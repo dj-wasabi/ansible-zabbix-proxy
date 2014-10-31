@@ -4,6 +4,7 @@ dj-wasabi.zabbix-proxy
 This is an role for installing and maintaining the zabbix-proxy. There are other roles for the server, javagateway and the agent. (Which will be available soon..)
 
 * zabbix-server (https://galaxy.ansible.com/list#/roles/2070)
+* zabbix-proxy (https://galaxy.ansible.com/list#/roles/2073)
 
 Requirements
 ------------
@@ -60,6 +61,6 @@ Author Information
 
 This is my first attempt to create an ansible role, so please send suggestion or pull requests to make this role better. 
 
-Github: https://github.com/dj-wasabi/ansible-zabbix-server
+Github: https://github.com/dj-wasabi/ansible-zabbix-proxy
 
 mail: ikben [ at ] werner-dijkerman . nl
