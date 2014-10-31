@@ -46,7 +46,7 @@ Example Playbook
 
 Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
 
-    - hosts: zabbix-server
+    - hosts: zabbix-proxy
       sudo: yes
       roles:
          - { role: dj-wasabi.zabbix-proxy, zabbix_server_host: 192.168.1.1 }
