@@ -6,4 +6,3 @@ zabbix_server_host: 192.168.1.1
 zabbix_server_port: 10051
 
 zabbix_version: 2.4
-
