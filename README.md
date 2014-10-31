@@ -1,38 +1,65 @@
-Role Name
+dj-wasabi.zabbix-proxy
 =========
 
-A brief description of the role goes here.
+This is an role for installing and maintaining the zabbix-proxy. There are other roles for the server, javagateway and the agent. (Which will be available soon..)
+
+* zabbix-server (https://galaxy.ansible.com/list#/roles/2070)
 
 Requirements
 ------------
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+This role will work on:
+* Red Hat
+* Debian
+* Ubuntu
+
+So, you'll need one of those operating systems.. :-)
 
 Role Variables
 --------------
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+There are some variables in de default/main.yml which can (Or needs to) be changed/overriden:
+* `zabbix_server_host`: The ip or dns name for the zabbix-server machine.
+* `zabbix_server_port`: The port on which the zabbix-server is running. Default: 10051
+* `zabbix_version`: This is the version of zabbix. Default it is 2.4, but can be overriden to 2.2 or 2.0.
+
+There are some zabbix-proxy specific variables which will be used for the zabbix-proxy configuration file, these can be found in the vars/main.yml file. There are 2 which needs some explanation:
+```bash
+  #database_type: mysql
+  #database_type_long: mysql
+  database_type: pgsql
+  database_type_long: postgresql
+```
+
+There are 2 database_types which will be supported: mysql and postgresql. You'll need to comment or uncomment the database you would like to use. In example from above, the postgresql database is used. If you want to use mysql, uncomment the 2 lines from mysql and comment the 2 lines for postgresql.
 
 Dependencies
 ------------
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+```text
+You'll need to find the correct database role by yourself. I only want to use roles which supports the 3 main operating systems as well and for now I can't find one. If there is an role which supports these 3 operating systems, please let me know and I'll use it as dependency.
+```
 
 Example Playbook
 ----------------
 
 Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
 
-    - hosts: servers
+    - hosts: zabbix-server
+      sudo: yes
       roles:
-         - { role: username.rolename, x: 42 }
+         - { role: dj-wasabi.zabbix-proxy, zabbix_server_host: 192.168.1.1 }
 
 License
 -------
 
-BSD
+GPLv3
 
 Author Information
 ------------------
 
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+This is my first attempt to create an ansible role, so please send suggestion or pull requests to make this role better. 
+
+Github: https://github.com/dj-wasabi/ansible-zabbix-server
+
+mail: ikben [ at ] werner-dijkerman . nl

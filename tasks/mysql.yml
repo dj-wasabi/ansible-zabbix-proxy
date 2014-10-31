@@ -1,0 +1,18 @@
+---
+# task file for mysql
+
+- name: MySQL | Create database
+  mysql_db: name={{ proxy_dbname }}
+            state=present
+
+- name: MySQL | Create database user
+  mysql_user: name={{ proxy_dbuser }}
+              password={{ proxy_dbpassword }}
+              priv={{ proxy_dbname }}.*:ALL 
+              state=present
+
+- name: MySQL | Importing schema file
+  shell: "cd {{ datafiles_path }} && mysql -u {{ proxy_dbuser }} -p{{ proxy_dbpassword }} -D {{ proxy_dbname }} < schema.sql && touch /etc/zabbix/schema.done"
+  args:
+    creates: /etc/zabbix/schema.done
+
