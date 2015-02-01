@@ -24,11 +24,16 @@ Role Variables
 --------------
 
 There are some variables in de default/main.yml which can (Or needs to) be changed/overriden:
+
 * `zabbix_server_host`: The ip or dns name for the zabbix-server machine.
+
 * `zabbix_server_port`: The port on which the zabbix-server is running. Default: 10051
+
 * `zabbix_version`: This is the version of zabbix. Default it is 2.4, but can be overriden to 2.2 or 2.0.
 
-There are some zabbix-proxy specific variables which will be used for the zabbix-proxy configuration file, these can be found in the vars/main.yml file. There are 2 which needs some explanation:
+* `zabbix_repo`: True / False. When you already have an repository with the zabbix components, you can set it to False.
+
+There are some zabbix-proxy specific variables which will be used for the zabbix-proxy configuration file, these can be found in the default/main.yml file. There are 2 which needs some explanation:
 ```bash
   #database_type: mysql
   #database_type_long: mysql
@@ -53,7 +58,7 @@ Including an example of how to use your role (for instance, with variables passe
     - hosts: zabbix-proxy
       sudo: yes
       roles:
-         - { role: dj-wasabi.zabbix-proxy, zabbix_server_host: 192.168.1.1 }
+         - { role: dj-wasabi.zabbix-proxy, zabbix_server_host: 192.168.1.1, database_type: pgsql, database_type_long: postgresql }
 
 License
 -------
