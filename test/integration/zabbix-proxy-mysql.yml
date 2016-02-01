@@ -1,8 +1,12 @@
 ---
 - hosts: localhost
-  remote_user: root
   roles:
-    - role: geerlingguy.mysql
+    - role: galaxyprojectdotorg.postgresql
+      postgresql_pg_hba_conf:
+        - "host all all 127.0.0.1/32 trust"
+        - "host all all ::1/128 trust"
+      postgresql_pg_hba_local_ipv4: false
+      postgresql_pg_hba_local_ipv6: false
     - role: ansible-zabbix-proxy
       zabbix_url: zabbix_server_host
       zabbix_version: 2.4
