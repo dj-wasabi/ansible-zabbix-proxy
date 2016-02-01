@@ -8,22 +8,22 @@
 - name: "Debian | Installing repository Debian"
   apt_repository: repo="deb http://repo.zabbix.com/zabbix/{{ zabbix_version }}/debian/ {{ ansible_distribution_release }} main" 
                   state=present
-  when: ansible_distribution == "Debian" and zabbix_repo == True
+  when: ansible_distribution == "Debian" and zabbix_repo
 
 - name: "Debian | Installing repository Debian"
   apt_repository: repo="deb-src http://repo.zabbix.com/zabbix/{{ zabbix_version }}/debian/ {{ ansible_distribution_release }} main" 
                   state=present
-  when: ansible_distribution == "Debian" and zabbix_repo == True
+  when: ansible_distribution == "Debian" and zabbix_repo
 
 - name: "Debian | Installing repository Ubuntu"
   apt_repository: repo="deb http://repo.zabbix.com/zabbix/{{ zabbix_version }}/ubuntu/ {{ ansible_distribution_release }} main" 
                   state=present
-  when: ansible_distribution == "ubuntu" and zabbix_repo == True
+  when: ansible_distribution == "Ubuntu" and zabbix_repo
 
 - name: "Debian | Installing repository Ubuntu"
   apt_repository: repo="deb-src http://repo.zabbix.com/zabbix/{{ zabbix_version }}/ubuntu/ {{ ansible_distribution_release }} main"
                   state=present
-  when: ansible_distribution == "ubuntu" and zabbix_repo == True
+  when: ansible_distribution == "Ubuntu" and zabbix_repo
 
 - name: "Debian | Install gpg key"
   apt_key: id=79EA5ED4
@@ -34,5 +34,11 @@
   apt: pkg=zabbix-proxy-{{ database_type }} 
        state=present 
        update_cache=yes
+       force=yes
        cache_valid_time=3600
+
+- name: "Debian | Install Ansible module dependencies"
+  apt: name=python-psycopg2
+       state=present
+  when: zabbix_database_creation
 

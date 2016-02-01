@@ -6,7 +6,7 @@ zabbix_server_host: 192.168.1.1
 zabbix_server_port: 10051
 zabbix_version: 2.4
 zabbix_repo: True
-manage_database_creation: True
+zabbix_database_creation: True
 manage_database_sqlload: True
 
 # Some role specific vars
@@ -24,10 +24,10 @@ proxy_logfilesize: 10
 proxy_debuglevel: 3
 proxy_pidfile: /var/run/zabbix/zabbix_proxy.pid
 proxy_dbhost: localhost
-proxy_dbname: zabbix-proxy
+proxy_dbname: zabbix_proxy
 proxy_dbschema:
-proxy_dbuser: zabbix-proxy
-proxy_dbpassword: zabbix-proxy
+proxy_dbuser: zabbix_proxy
+proxy_dbpassword: zabbix_proxy
 proxy_dbsocket:
 proxy_dbport:
 proxy_localbuffer: 0
