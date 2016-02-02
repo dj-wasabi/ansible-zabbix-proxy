@@ -10,8 +10,6 @@ install:
   - echo -e '[defaults]\nroles_path = ../\nhostfile = ./test/inventory' > ansible.cfg
   - ansible-galaxy install galaxyprojectdotorg.postgresql
 script:
-  - ls -l /usr/local/bin/perl
-  - echo $PATH
   - ansible-playbook test/integration/zabbix-proxy-mysql.yml --syntax-check
   - ansible-playbook test/integration/zabbix-proxy-mysql.yml --connection=local --sudo
 notifications:
