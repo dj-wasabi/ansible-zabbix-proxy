@@ -2,6 +2,7 @@
 - hosts: localhost
   roles:
     - role: ANXS.postgresql
+      postgresql_version: 9.5
     - role: ansible-zabbix-proxy
       zabbix_url: zabbix_server_host
       zabbix_version: 2.4

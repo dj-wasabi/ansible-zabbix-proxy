@@ -28,7 +28,7 @@
 - name: "Debian | Install gpg key"
   apt_key: id=79EA5ED4
            url=http://repo.zabbix.com/zabbix-official-repo.key
-  when: zabbix_repo == True
+  when: zabbix_repo
 
 - name: "Debian | Installing zabbix-proxy-{{ database_type }}"
   apt: pkg=zabbix-proxy-{{ database_type }} 
