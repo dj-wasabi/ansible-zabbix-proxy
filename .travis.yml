@@ -8,7 +8,7 @@ install:
   - pip install ansible==1.9.4
   - echo -e 'localhost  ansible_connection=local' > test/inventory
   - echo -e '[defaults]\nroles_path = ../\nhostfile = ./test/inventory' > ansible.cfg
-  - ansible-galaxy install galaxyprojectdotorg.postgresql
+  - ansible-galaxy install ANXS.postgresql
 script:
   - ansible-playbook test/integration/zabbix-proxy-mysql.yml --syntax-check
   - ansible-playbook test/integration/zabbix-proxy-mysql.yml --connection=local --sudo
