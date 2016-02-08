@@ -42,3 +42,22 @@
        state=present
   when: zabbix_database_creation
 
+- name: "Debian | Install Mysql Client package"
+  apt: name={{ item }}
+       state=present
+  with_items:
+    - mysql-client
+    - python-mysqldb
+  when: database_type == 'mysql'
+  tags:
+    - zabbix-server
+    - init
+    - database
+
+- name: "Debian | Install PostgreSQL Client package"
+  apt: name=postgresql state=present
+  when: database_type == 'pgsql'
+  tags:
+    - zabbix-server
+    - init
+    - database
