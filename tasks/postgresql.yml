@@ -17,18 +17,9 @@
   when: zabbix_database_creation
 
 - name: "PostgreSQL | Importing schema file"
-  shell: "cd {{ datafiles_path }} && psql -h localhost -U {{ proxy_dbuser }} -d {{ proxy_dbname }} -f schema.sql && touch /etc/zabbix/schema.done"
+  shell: "cd {{ datafiles_path }} && psql -h '{{ proxy_dbhost }}' -U '{{ proxy_dbuser }}' -d '{{ proxy_dbname }}' -f schema.sql && touch /etc/zabbix/schema.done"
   args:
     creates: /etc/zabbix/schema.done
   environment:
-    PGPASSWORD: '{{ proxy_dbpassword }}'
-  when: zabbix_database_creation and ansible_distribution == "Debian"
-
-- name: "PostgreSQL | Importing schema file"
-  shell: "cd {{ datafiles_path }} && psql -h localhost -U {{ proxy_dbuser }} -d {{ proxy_dbname }} -f schema.sql && touch /etc/zabbix/schema.done"
-  args:
-    creates: /etc/zabbix/schema.done
-  environment:
-    PGPASSWORD: '{{ proxy_dbpassword }}'
-  when: zabbix_database_creation and ansible_distribution == "Ubuntu"
-
+    PGPASSWORD: '{{ server_dbpassword }}'
+  when: zabbix_database_creation
