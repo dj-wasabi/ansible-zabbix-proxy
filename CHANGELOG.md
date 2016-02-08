@@ -4,10 +4,10 @@ Below an overview of all changes in the releases.
 
 Version (Release date)
 
-0.3.0   (2016-02-05)
+0.3.0   (2016-02-08)
 
   * Added test-kitchen tests
-  * Small bug fix for installation on RedHat
+  * Small bug fix for installation on RedHat/Debian
 
 0.2.0   (2016-02-04)
 
