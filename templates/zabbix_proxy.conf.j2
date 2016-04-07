@@ -269,11 +269,13 @@ StartDBSyncers={{ proxy_startdbsyncers }}
 #
 HistoryCacheSize={{ proxy_historycachesize -}}M
 
+{% if zabbix_version == '2.2' or zabbix_version == '2.4' %}
 ### Option: HistoryTextCacheSize
 #	Size of text history cache, in bytes.
 #	Shared memory size for storing character, text or log history data.
 #
 HistoryTextCacheSize={{ proxy_historytextcachesize -}}M
+{% endif %}
 
 ### Option: Timeout
 #	Specifies how long we wait for agent, SNMP device or external check (in seconds).
