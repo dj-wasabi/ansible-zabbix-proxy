@@ -1,0 +1,11 @@
+---
+# task file for sqlite3
+
+- name: "Sqlite3 | Default Database Path"
+  set_fact:
+    proxy_dbname: /var/lib/zabbix/zabbix_proxy.db
+  when: proxy_dbname == "zabbix_proxy"
+
+- name: "Sqlite3 | Create database"
+  file: name={{ proxy_dbname | dirname }} state=directory owner=zabbix
+  when: zabbix_database_creation
