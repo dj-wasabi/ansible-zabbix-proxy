@@ -18,6 +18,12 @@
          group=zabbix
          state=directory
 
+- name: "Create module dir zabbix-proxy"
+  file : path={{ proxy_loadmodulepath }}
+         owner=zabbix
+         group=zabbix
+         state=directory
+
 - name: "Configure zabbix-proxy"
   template: src=zabbix_proxy.conf.j2
             dest=/etc/zabbix/zabbix_proxy.conf

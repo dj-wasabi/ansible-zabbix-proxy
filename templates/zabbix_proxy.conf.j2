@@ -340,7 +340,7 @@ LogSlowQueries={{ proxy_loglowqueries }}
 #
 TmpDir={{ proxy_tmpdir }}
 
-{% if zabbix_version == '2.2' or zabbix_version == '2.4' %}
+{% if zabbix_version|string() == '2.2' or zabbix_version|string() == '2.4' %}
 ### Option: AllowRoot
 #	Allow the proxy to run as 'root'. If disabled and the proxy is started by 'root', the proxy
 #	will try to switch to user 'zabbix' instead. Has no effect if started under a regular user.
@@ -358,7 +358,7 @@ Include={{ proxy_include }}
 
 ####### LOADABLE MODULES #######
 
-{% if zabbix_version == '2.2' or zabbix_version == '2.4' %}
+{% if zabbix_version|string() == '2.2' or zabbix_version|string() == '2.4' or zabbix_version|string() == '3.0' %}
 ### Option: LoadModulePath
 #	Full path to location of proxy modules.
 #	Default depends on compilation options.
