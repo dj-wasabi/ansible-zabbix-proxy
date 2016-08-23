@@ -1,20 +1,28 @@
 ---
 # Tasks specific for RedHat systems
 
-- name: "RedHat | Set some facts"
-  set_fact: 
+- name: "RedHat | Set some facts Zabbix"
+  set_fact:
+    apache_log: httpd
     datafiles_path: "/usr/share/doc/zabbix-proxy-{{ database_type }}-{{ zabbix_version }}*/create"
+  when: zabbix_version != 3.0
+
+- name: "RedHat | Set facts for Zabbix 3.0"
+  set_fact:
+    apache_log: httpd
+    datafiles_path: "/usr/share/doc/zabbix-proxy-{{ database_type }}-{{ zabbix_version }}*"
+  when: zabbix_version == 3.0
 
 - name: "RedHat | Install basic repo file"
   template: src=rhel.repo.j2
             dest=/etc/yum.repos.d/zabbix.repo
-            owner=root 
-            group=root 
+            owner=root
+            group=root
             mode=0644
   when: zabbix_repo
 
 - name: "RedHat | Installing zabbix-proxy-database_type"
-  yum:  pkg=zabbix-proxy-{{ database_type }} 
+  yum:  pkg=zabbix-proxy-{{ database_type }}
         state=present
 
 - name: "RedHat | Install Ansible module dependencies"
@@ -22,18 +30,18 @@
        state=present
   when: zabbix_database_creation
   tags:
-    - zabbix-server
+    - zabbix-proxy
     - init
 
 - name: "RedHat | Install Mysql Client package RHEL7"
   yum: name={{ item }}
-       state=present
+       state=installed
   with_items:
     - mariadb
-    - mysql-python
-  when: database_type == 'mysql' and ansible_distribution_major_version == "7"
+    - MySQL-python
+  when: database_type == 'mysql' and ansible_distribution_major_version == '7'
   tags:
-    - zabbix-server
+    - zabbix-proxy
     - init
 
 - name: "RedHat | Install Mysql Client package RHEL5 - 6"
@@ -42,9 +50,9 @@
   with_items:
     - mysql
     - MySQL-python
-  when: database_type == 'mysql' and ansible_distribution_major_version == "6" or ansible_distribution_major_version == "5"
+  when: database_type == 'mysql' and ansible_distribution_major_version != '7'
   tags:
-    - zabbix-server
+    - zabbix-proxy
     - init
     - database
 
@@ -53,6 +61,6 @@
        state=latest
   when: database_type == 'pgsql'
   tags:
-    - zabbix-server
+    - zabbix-proxy
     - init
     - database

@@ -19,10 +19,9 @@
          state=directory
 
 - name: "Configure zabbix-proxy"
-  template: src=zabbix_proxy.conf.j2 
-            dest=/etc/zabbix/zabbix_proxy.conf 
-            owner=zabbix 
+  template: src=zabbix_proxy.conf.j2
+            dest=/etc/zabbix/zabbix_proxy.conf
+            owner=zabbix
             group=zabbix
-            mode=0755 
+            mode=644
   notify: zabbix-proxy restarted
-

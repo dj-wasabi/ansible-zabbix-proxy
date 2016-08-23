@@ -1,0 +1,3 @@
+{
+  "test_default.py::test_zabbixproxy_running_and_enabled[docker://zabbix-proxy-pgsql-centos]": true
+}

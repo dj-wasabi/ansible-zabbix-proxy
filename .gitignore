@@ -1,3 +1,6 @@
 .kitchen/
 .kitchen.local.yml
 .idea
+.cache
+.molecule
+
