@@ -4,7 +4,7 @@
 #
 zabbix_server_host: 192.168.1.1
 zabbix_server_port: 10051
-zabbix_version: 2.4
+zabbix_version: 3.0
 zabbix_repo: True
 zabbix_database_creation: True
 manage_database_sqlload: True
@@ -64,7 +64,7 @@ proxy_unreachabedelay: 15
 proxy_externalscripts: /usr/lib/zabbix/externalscripts
 proxy_fpinglocation: /usr/sbin/fping
 proxy_fping6location: /usr/sbin/fping6
-proxy_sshkeylocation: 
+proxy_sshkeylocation:
 proxy_loglowqueries: 0
 proxy_tmpdir: /tmp
 proxy_allowroot: 0

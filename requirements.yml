@@ -1,2 +1,3 @@
 ---
+- src: geerlingguy.mysql
 - src: galaxyprojectdotorg.postgresql
