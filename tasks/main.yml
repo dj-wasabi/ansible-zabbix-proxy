@@ -31,3 +31,8 @@
             group=zabbix
             mode=644
   notify: zabbix-proxy restarted
+
+- name: "zabbix-proxy started"
+  service: name=zabbix-proxy
+           state=started
+           enabled=yes
