@@ -55,6 +55,7 @@ proxy_housekeepingfrequency: 1
 proxy_casesize: 8
 proxy_startdbsyncers: 4
 proxy_historycachesize: 8
+proxy_historyindexcachesize: 4
 proxy_historytextcachesize: 16
 proxy_timeout: 3
 proxy_trappertimeout: 300
