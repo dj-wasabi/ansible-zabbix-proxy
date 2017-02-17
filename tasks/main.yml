@@ -1,6 +1,12 @@
 ---
 # tasks file for dj-wasabi.zabbix-proxy
 
+- name: Set OS dependent variables
+  include_vars: "{{ item }}"
+  with_first_found:
+   - "{{ ansible_distribution }}.yml"
+   - main.yml
+
 - name: "Install the correct repository"
   include: "RedHat.yml"
   when: ansible_os_family == "RedHat"

@@ -13,6 +13,12 @@
     datafiles_path: "/usr/share/doc/zabbix-proxy-{{ database_type }}-{{ zabbix_version }}*"
   when: zabbix_version == 3.0
 
+- name: "RedHat | Import rpm key"
+  rpm_key:
+    state: present
+    key: http://repo.zabbix.com/RPM-GPG-KEY-ZABBIX-79EA5ED4
+  tags: key
+
 - name: "RedHat | Install basic repo file"
   template: src=rhel.repo.j2
             dest=/etc/yum.repos.d/zabbix.repo
