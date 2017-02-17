@@ -269,6 +269,17 @@ StartDBSyncers={{ proxy_startdbsyncers }}
 #
 HistoryCacheSize={{ proxy_historycachesize -}}M
 
+{% if zabbix_version == '3.2' %}
+### Option: HistoryIndexCacheSize
+# Size of history index cache, in bytes.
+# Shared memory size for indexing history cache.
+#
+# Mandatory: no
+# Range: 128K-2G
+# Default:
+HistoryIndexCacheSize={{ proxy_historyindexcachesize -}}M
+{% endif %}
+
 {% if zabbix_version == '2.2' or zabbix_version == '2.4' %}
 ### Option: HistoryTextCacheSize
 #	Size of text history cache, in bytes.
