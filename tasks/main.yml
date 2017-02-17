@@ -1,11 +1,17 @@
 ---
 # tasks file for dj-wasabi.zabbix-proxy
 
-- name: Set OS dependent variables
+- name: "Set OS dependent variables"
   include_vars: "{{ item }}"
   with_first_found:
-   - "{{ ansible_distribution }}.yml"
-   - main.yml
+   - "../vars/{{ ansible_distribution }}.yml"
+   - "../vars/main.yml"
+
+- name: "Set short version name"
+  set_fact:
+      zabbix_short_version: "{{ zabbix_version | regex_replace('\\.', '') }}"
+  tags:
+    - always
 
 - name: "Install the correct repository"
   include: "RedHat.yml"
@@ -19,13 +25,14 @@
   include: "{{ database_type_long }}.yml"
 
 - name: "Create include dir zabbix-proxy"
-  file : path={{ proxy_include }}
+  file: path={{ proxy_include }}
          owner=zabbix
          group=zabbix
+         mode=0755
          state=directory
 
 - name: "Create module dir zabbix-proxy"
-  file : path={{ proxy_loadmodulepath }}
+  file: path={{ proxy_loadmodulepath }}
          owner=zabbix
          group=zabbix
          state=directory
@@ -35,7 +42,7 @@
             dest=/etc/zabbix/zabbix_proxy.conf
             owner=zabbix
             group=zabbix
-            mode=644
+            mode=0644
   notify: zabbix-proxy restarted
 
 - name: "zabbix-proxy started"

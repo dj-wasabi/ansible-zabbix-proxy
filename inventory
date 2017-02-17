@@ -1,0 +1,9 @@
+[postgresql]
+zabbix-proxy-pgsql-centos ansible_connection=docker
+zabbix-proxy-pgsql-debian ansible_connection=docker
+zabbix-proxy-pgsql-ubuntu ansible_connection=docker
+
+[mysql]
+zabbix-proxy-mysql-centos ansible_connection=docker
+zabbix-proxy-mysql-debian ansible_connection=docker
+zabbix-proxy-mysql-ubuntu ansible_connection=docker

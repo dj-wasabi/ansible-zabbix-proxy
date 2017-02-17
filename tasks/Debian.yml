@@ -1,17 +1,24 @@
 ---
-#
 
 - name: "Debian | Set some facts"
   set_fact:
     apache_log: apache2
-    datafiles_path: /usr/share/zabbix-proxy-{{ database_type }}
-  when: zabbix_version != 3.0
+    datafiles_path: "/usr/share/zabbix-proxy-{{ database_type }}"
+  when: zabbix_short_version < 30
+  tags:
+    - zabbix-server
+    - init
+    - config
 
 - name: "Debian | Set some facts for Zabbix 3.0"
   set_fact:
     apache_log: apache2
-    datafiles_path: /usr/share/doc/zabbix-proxy-{{ database_type }}
-  when: zabbix_version == 3.0
+    datafiles_path: "/usr/share/doc/zabbix-proxy-{{ database_type }}"
+  when: zabbix_short_version >= 30
+  tags:
+    - zabbix-server
+    - init
+    - config
 
 - name: "Debian | Installing repository Debian"
   apt_repository: repo="deb http://repo.zabbix.com/zabbix/{{ zabbix_version }}/debian/ {{ ansible_distribution_release }} main"

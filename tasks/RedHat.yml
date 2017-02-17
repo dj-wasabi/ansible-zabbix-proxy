@@ -1,17 +1,21 @@
 ---
 # Tasks specific for RedHat systems
 
-- name: "RedHat | Set some facts Zabbix"
+- name: "RedHat | Set some facts Zabbix < 3.0"
   set_fact:
     apache_log: httpd
     datafiles_path: "/usr/share/doc/zabbix-proxy-{{ database_type }}-{{ zabbix_version }}*/create"
-  when: zabbix_version != 3.0
+  when: zabbix_short_version < 30
+  tags:
+    - zabbix-server
 
-- name: "RedHat | Set facts for Zabbix 3.0"
+- name: "RedHat | Set facts for Zabbix >= 3.0"
   set_fact:
     apache_log: httpd
     datafiles_path: "/usr/share/doc/zabbix-proxy-{{ database_type }}-{{ zabbix_version }}*"
-  when: zabbix_version == 3.0
+  when: zabbix_short_version >= 30
+  tags:
+    - zabbix-server
 
 - name: "RedHat | Import rpm key"
   rpm_key:
@@ -64,7 +68,7 @@
 
 - name: "RedHat | Install PostgreSQL client package"
   yum: name=postgresql
-       state=latest
+       state=present
   when: database_type == 'pgsql'
   tags:
     - zabbix-proxy
