@@ -14,6 +14,10 @@ Version (Release date)
   * Fix bugs with LoadModule & add sqlite3 support #2 (By pull request: splitice (Thanks!))
   * Zabbix proxy 3.0 fixes #1 (By pull request: zbal (Thanks!))
 
+0.4.0   (2016-08-24)
+
+  * ?
+
 0.3.0   (2016-02-08)
 
   * Added test-kitchen tests
