@@ -9,7 +9,7 @@
 #	0 - proxy in the active mode
 #	1 - proxy in the passive mode
 #
-ProxyMode={{ proxy_mode }}
+ProxyMode={{ zabbix_proxy_mode }}
 
 ### Option: Server
 #	IP address (or hostname) of Zabbix server.
@@ -41,26 +41,26 @@ Hostname={{ inventory_hostname  }}
 ### Option: ListenPort
 #	Listen port for trapper.
 #
-ListenPort={{ proxy_listenport }}
+ListenPort={{ zabbix_proxy_listenport }}
 
 ### Option: SourceIP
 #	Source IP address for outgoing connections.
 #
-{% if proxy_sourceip is defined and proxy_sourceip %}
-SourceIP={{ proxy_sourceip }}
+{% if zabbix_proxy_sourceip is defined and zabbix_proxy_sourceip %}
+SourceIP={{ zabbix_proxy_sourceip }}
 {% endif %}
 
 ### Option: LogFile
 #	Name of log file.
 #	If not set, syslog is used.
 #
-LogFile={{ proxy_logfile }}
+LogFile={{ zabbix_proxy_logfile }}
 
 ### Option: LogFileSize
 #	Maximum size of log file in MB.
 #	0 - disable automatic log rotation.
 #
-LogFileSize={{ proxy_logfilesize }}
+LogFileSize={{ zabbix_proxy_logfilesize }}
 
 ### Option: DebugLevel
 #	Specifies debug level
@@ -70,44 +70,44 @@ LogFileSize={{ proxy_logfilesize }}
 #	3 - warnings
 #	4 - for debugging (produces lots of information)
 #
-DebugLevel={{ proxy_debuglevel }}
+DebugLevel={{ zabbix_proxy_debuglevel }}
 
 ### Option: PidFile
 #	Name of PID file.
 #
-PidFile={{ proxy_pidfile }}
+PidFile={{ zabbix_proxy_pidfile }}
 
 ### Option: DBHost
 #	Database host name.
 #	If set to localhost, socket is used for MySQL.
 #	If set to empty string, socket is used for PostgreSQL.
 #
-DBHost={{ proxy_dbhost }}
+DBHost={{ zabbix_proxy_dbhost }}
 
 ### Option: DBName
 #	Database name.
 #	For SQLite3 path to database file must be provided. DBUser and DBPassword are ignored.
 #	Warning: do not attempt to use the same database Zabbix server is using.
 #
-DBName={{ proxy_dbname }}
+DBName={{ zabbix_proxy_dbname }}
 
 ### Option: DBSchema
 #	Schema name. Used for IBM DB2.
 #
-{% if proxy_dbschema is defined and proxy_dbschema %}
-DBSchema={{ proxy_dbschema }}
+{% if zabbix_proxy_dbschema is defined and zabbix_proxy_dbschema %}
+DBSchema={{ zabbix_proxy_dbschema }}
 {% endif %}
 
 ### Option: DBUser
 #	Database user. Ignored for SQLite.
 #
-DBUser={{ proxy_dbuser }}
+DBUser={{ zabbix_proxy_dbuser }}
 
 ### Option: DBPassword
 #	Database password. Ignored for SQLite.
 #	Comment this line if no password is used.
 #
-DBPassword={{ proxy_dbpassword }}
+DBPassword={{ zabbix_proxy_dbpassword }}
 
 ### Option: DBSocket
 #	Path to MySQL socket.
@@ -124,13 +124,13 @@ DBPassword={{ proxy_dbpassword }}
 #	Proxy will keep data locally for N hours, even if the data have already been synced with the server.
 #	This parameter may be used if local data will be used by third party applications.
 #
-ProxyLocalBuffer={{ proxy_localbuffer }}
+ProxyLocalBuffer={{ zabbix_proxy_localbuffer }}
 
 ### Option: ProxyOfflineBuffer
 #	Proxy will keep data for N hours in case if no connectivity with Zabbix Server.
 #	Older data will be lost.
 #
-ProxyOfflineBuffer={{ proxy_offlinebuffer }}
+ProxyOfflineBuffer={{ zabbix_proxy_offlinebuffer }}
 
 ### Option: HeartbeatFrequency
 #	Frequency of heartbeat messages in seconds.
@@ -138,138 +138,138 @@ ProxyOfflineBuffer={{ proxy_offlinebuffer }}
 #	0 - heartbeat messages disabled.
 #	For a proxy in the passive mode this parameter will be ignored.
 #
-HeartbeatFrequency={{ proxy_heartbeatfrequency }}
+HeartbeatFrequency={{ zabbix_proxy_heartbeatfrequency }}
 
 ### Option: ConfigFrequency
 #	How often proxy retrieves configuration data from Zabbix Server in seconds.
 #	For a proxy in the passive mode this parameter will be ignored.
 #
-ConfigFrequency={{ proxy_configfrequency }}
+ConfigFrequency={{ zabbix_proxy_configfrequency }}
 
 ### Option: DataSenderFrequency
 #	Proxy will send collected data to the Server every N seconds.
 #	For a proxy in the passive mode this parameter will be ignored.
 #
-DataSenderFrequency={{ proxy_datasenderfrequency }}
+DataSenderFrequency={{ zabbix_proxy_datasenderfrequency }}
 
 ############ ADVANCED PARAMETERS ################
 
 ### Option: StartPollers
 #	Number of pre-forked instances of pollers.
 #
-StartPollers={{ proxy_startpollers }}
+StartPollers={{ zabbix_proxy_startpollers }}
 
 ### Option: StartIPMIPollers
 #	Number of pre-forked instances of IPMI pollers.
 #
-StartIPMIPollers={{ proxy_startipmipollers }}
+StartIPMIPollers={{ zabbix_proxy_startipmipollers }}
 
 ### Option: StartPollersUnreachable
 #	Number of pre-forked instances of pollers for unreachable hosts (including IPMI).
 #
-StartPollersUnreachable={{ proxy_startpollersunreachable }}
+StartPollersUnreachable={{ zabbix_proxy_startpollersunreachable }}
 
 ### Option: StartTrappers
 #	Number of pre-forked instances of trappers.
 #	Trappers accept incoming connections from Zabbix sender and active agents.
 #
-StartTrappers={{ proxy_starttrappers }}
+StartTrappers={{ zabbix_proxy_starttrappers }}
 
 ### Option: StartPingers
 #	Number of pre-forked instances of ICMP pingers.
 #
-StartPingers={{ proxy_startpingers }}
+StartPingers={{ zabbix_proxy_startpingers }}
 
 ### Option: StartDiscoverers
 #	Number of pre-forked instances of discoverers.
 #
-StartDiscoverers={{ proxy_startdiscoverers }}
+StartDiscoverers={{ zabbix_proxy_startdiscoverers }}
 
 ### Option: StartHTTPPollers
 #	Number of pre-forked instances of HTTP pollers.
 #
-StartHTTPPollers={{ proxy_starthttppollers }}
+StartHTTPPollers={{ zabbix_proxy_starthttppollers }}
 
 ### Option: JavaGateway
 #	IP address (or hostname) of Zabbix Java gateway.
 #	Only required if Java pollers are started.
 #
-{% if proxy_javagateway is defined and proxy_javagateway %}
-JavaGateway={{ proxy_javagateway }}
+{% if zabbix_proxy_javagateway is defined and zabbix_proxy_javagateway %}
+JavaGateway={{ zabbix_proxy_javagateway }}
 
 ### Option: JavaGatewayPort
 #	Port that Zabbix Java gateway listens on.
 #
-JavaGatewayPort={{ proxy_javagatewayport }}
+JavaGatewayPort={{ zabbix_proxy_javagatewayport }}
 
 ### Option: StartJavaPollers
 #	Number of pre-forked instances of Java pollers.
 #
-StartJavaPollers={{ proxy_startjavapollers }}
+StartJavaPollers={{ zabbix_proxy_startjavapollers }}
 {% endif %}
 
-{% if zabbix_version == '2.2' or zabbix_version == '2.4' %}
+{% if zabbix_version | version_compare('2.4', '<') %}
 ### Option: StartVMwareCollectors
 #	Number of pre-forked vmware collector instances.
 #
-StartVMwareCollectors={{ proxy_startvmwarecollector }}
+StartVMwareCollectors={{ zabbix_proxy_startvmwarecollector }}
 
 ### Option: VMwareFrequency
 #	How often Zabbix will connect to VMware service to obtain a new data.
 #
-VMwareFrequency={{ proxy_vmwarefrequency }}
+VMwareFrequency={{ zabbix_proxy_vmwarefrequency }}
 
 ### Option: VMwareCacheSize
 #	Size of VMware cache, in bytes.
 #	Shared memory size for storing VMware data.
 #	Only used if VMware collectors are started.
 #
-VMwareCacheSize={{ proxy_vmwarecachesize -}}M
+VMwareCacheSize={{ zabbix_proxy_vmwarecachesize -}}M
 {% endif %}
 
 ### Option: SNMPTrapperFile
 #	Temporary file used for passing data from SNMP trap daemon to the proxy.
 #	Must be the same as in zabbix_trap_receiver.pl or SNMPTT configuration file.
 #
-SNMPTrapperFile={{ proxy_snmptrapperfile }}
+SNMPTrapperFile={{ zabbix_proxy_snmptrapperfile }}
 
 ### Option: StartSNMPTrapper
 #	If 1, SNMP trapper process is started.
 #
-StartSNMPTrapper={{ proxy_snmptrapper }}
+StartSNMPTrapper={{ zabbix_proxy_snmptrapper }}
 
 ### Option: ListenIP
 #	List of comma delimited IP addresses that the trapper should listen on.
 #	Trapper will listen on all network interfaces if this parameter is missing.
 #
-{% if proxy_listenip is defined and proxy_listenip %}
-ListenIP={{ proxy_listenip }}
+{% if zabbix_proxy_listenip is defined and zabbix_proxy_listenip %}
+ListenIP={{ zabbix_proxy_listenip }}
 {% endif %}
 
 ### Option: HousekeepingFrequency
 #	How often Zabbix will perform housekeeping procedure (in hours).
 #	Housekeeping is removing unnecessary information from history, alert, and alarms tables.
 #
-HousekeepingFrequency={{ proxy_housekeepingfrequency }}
+HousekeepingFrequency={{ zabbix_proxy_housekeepingfrequency }}
 
 ### Option: CacheSize
 #	Size of configuration cache, in bytes.
 #	Shared memory size, for storing hosts and items data.
 #
-CacheSize={{ proxy_casesize -}}M
+CacheSize={{ zabbix_proxy_casesize -}}M
 
 ### Option: StartDBSyncers
 #	Number of pre-forked instances of DB Syncers
 #
-StartDBSyncers={{ proxy_startdbsyncers }}
+StartDBSyncers={{ zabbix_proxy_startdbsyncers }}
 
 ### Option: HistoryCacheSize
 #	Size of history cache, in bytes.
 #	Shared memory size for storing history data.
 #
-HistoryCacheSize={{ proxy_historycachesize -}}M
+HistoryCacheSize={{ zabbix_proxy_historycachesize -}}M
 
-{% if zabbix_version == '3.2' %}
+{% if zabbix_version | version_compare('3.2', '>=') %}
 ### Option: HistoryIndexCacheSize
 # Size of history index cache, in bytes.
 # Shared memory size for indexing history cache.
@@ -277,66 +277,66 @@ HistoryCacheSize={{ proxy_historycachesize -}}M
 # Mandatory: no
 # Range: 128K-2G
 # Default:
-HistoryIndexCacheSize={{ proxy_historyindexcachesize -}}M
+HistoryIndexCacheSize={{ zabbix_proxy_historyindexcachesize -}}M
 {% endif %}
 
-{% if zabbix_version == '2.2' or zabbix_version == '2.4' %}
+{% if zabbix_version | version_compare('2.4', '<') %}
 ### Option: HistoryTextCacheSize
 #	Size of text history cache, in bytes.
 #	Shared memory size for storing character, text or log history data.
 #
-HistoryTextCacheSize={{ proxy_historytextcachesize -}}M
+HistoryTextCacheSize={{ zabbix_proxy_historytextcachesize -}}M
 {% endif %}
 
 ### Option: Timeout
 #	Specifies how long we wait for agent, SNMP device or external check (in seconds).
 #
-Timeout={{ proxy_timeout }}
+Timeout={{ zabbix_proxy_timeout }}
 
 ### Option: TrapperTimeout
 #	Specifies how many seconds trapper may spend processing new data.
 #
-TrapperTimeout={{ proxy_trappertimeout }}
+TrapperTimeout={{ zabbix_proxy_trappertimeout }}
 
 ### Option: UnreachablePeriod
 #	After how many seconds of unreachability treat a host as unavailable.
 #
-UnreachablePeriod={{ proxy_unreachableperiod }}
+UnreachablePeriod={{ zabbix_proxy_unreachableperiod }}
 
 ### Option: UnavailableDelay
 #	How often host is checked for availability during the unavailability period, in seconds.
 #
-UnavailableDelay={{ proxy_unavaliabledelay }}
+UnavailableDelay={{ zabbix_proxy_unavaliabledelay }}
 
 ### Option: UnreachableDelay
 #	How often host is checked for availability during the unreachability period, in seconds.
 #
-UnreachableDelay={{ proxy_unreachabedelay }}
+UnreachableDelay={{ zabbix_proxy_unreachabedelay }}
 
 ### Option: ExternalScripts
 #	Full path to location of external scripts.
 #	Default depends on compilation options.
 #
-ExternalScripts={{ proxy_externalscripts }}
+ExternalScripts={{ zabbix_proxy_externalscripts }}
 
 ### Option: FpingLocation
 #	Location of fping.
 #	Make sure that fping binary has root ownership and SUID flag set.
 #
-FpingLocation={{ proxy_fpinglocation }}
+FpingLocation={{ zabbix_proxy_fpinglocation }}
 
 ### Option: Fping6Location
 #	Location of fping6.
 #	Make sure that fping6 binary has root ownership and SUID flag set.
 #	Make empty if your fping utility is capable to process IPv6 addresses.
 #
-Fping6Location={{ proxy_fping6location }}
+Fping6Location={{ zabbix_proxy_fping6location }}
 
 ### Option: SSHKeyLocation
 #	Location of public and private keys for SSH checks and actions.
 #
-{% if proxy_sshkeylocation is defined and proxy_sshkeylocation %}
-SSHKeyLocation={{ proxy_sshkeylocation }}
+{% if zabbix_proxy_sshkeylocation is defined and zabbix_proxy_sshkeylocation %}
+SSHKeyLocation={{ zabbix_proxy_sshkeylocation }}
 {% endif %}
 
 ### Option: LogSlowQueries
@@ -344,37 +344,37 @@ SSHKeyLocation={{ proxy_sshkeylocation }}
 #	Only works if DebugLevel set to 3 or 4.
 #	0 - don't log slow queries.
 #
-LogSlowQueries={{ proxy_loglowqueries }}
+LogSlowQueries={{ zabbix_proxy_loglowqueries }}
 
 ### Option: TmpDir
 #	Temporary directory.
 #
-TmpDir={{ proxy_tmpdir }}
+TmpDir={{ zabbix_proxy_tmpdir }}
 
-{% if zabbix_version|string() == '2.2' or zabbix_version|string() == '2.4' %}
+{% if zabbix_version | version_compare('2.4', '<') %}
 ### Option: AllowRoot
 #	Allow the proxy to run as 'root'. If disabled and the proxy is started by 'root', the proxy
 #	will try to switch to user 'zabbix' instead. Has no effect if started under a regular user.
 #	0 - do not allow
 #	1 - allow
 #
-AllowRoot={{ proxy_allowroot }}
+AllowRoot={{ zabbix_proxy_allowroot }}
 {% endif %}
 
 ### Option: Include
 #	You may include individual files or all files in a directory in the configuration file.
 #	Installing Zabbix will create include directory in /usr/local/etc, unless modified during the compile time.
 #
-Include={{ proxy_include }}
+Include={{ zabbix_proxy_include }}
 
 ####### LOADABLE MODULES #######
 
-{% if zabbix_version|string() == '2.2' or zabbix_version|string() == '2.4' or zabbix_version|string() == '3.0' %}
+{% if zabbix_version | version_compare('3.0', '<') %}
 ### Option: LoadModulePath
 #	Full path to location of proxy modules.
 #	Default depends on compilation options.
 #
-LoadModulePath={{ proxy_loadmodulepath }}
+LoadModulePath={{ zabbix_proxy_loadmodulepath }}
 {% endif %}
 
 ### Option: LoadModule
@@ -383,6 +383,6 @@ LoadModulePath={{ proxy_loadmodulepath }}
 #	The modules must be located in directory specified by LoadModulePath.
 #	It is allowed to include multiple LoadModule parameters.
 #
-{% if proxy_loadmodule is defined and proxy_loadmodule %}
-LoadModule={{ proxy_loadmodule }}
+{% if zabbix_proxy_loadmodule is defined and zabbix_proxy_loadmodule %}
+LoadModule={{ zabbix_proxy_loadmodule }}
 {% endif %}
