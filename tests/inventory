@@ -1,6 +1,0 @@
-localhost
-[mysql]
-zabbix-proxy-mysql-centos
-
-[postgresql]
-zabbix-proxy-pgsql-centos

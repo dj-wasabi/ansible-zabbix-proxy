@@ -1,26 +1,70 @@
 ---
 # task file for mysql
+- name: "Set the correct delegated_dbhost (to support MySQL db deployment on a remote dbhost)"
+  set_fact:
+    delegated_dbhost: "{{ zabbix_proxy_dbhost if (zabbix_proxy_dbhost != 'localhost') else inventory_hostname}}"
 
 - name: "MySQL | Create database"
-  mysql_db: name={{ proxy_dbname }}
-            state=present
+  mysql_db:
+    name: "{{ zabbix_proxy_dbname }}"
+    encoding: "{{ zabbix_proxy_dbencoding }}"
+    collation: "{{ zabbix_proxy_dbcollation }}"
+    state: present
   when: zabbix_database_creation
+  register: zabbix_database_created
+  delegate_to: "{{ delegated_dbhost }}"
+  tags:
+    - zabbix-proxy
+    - database
+    - skip_ansible_lint
 
 - name: "MySQL | Create database user"
-  mysql_user: name={{ proxy_dbuser }}
-              password={{ proxy_dbpassword }}
-              priv={{ proxy_dbname }}.*:ALL
-              state=present
+  mysql_user:
+    name: "{{ zabbix_proxy_dbuser }}"
+    password: "{{ zabbix_proxy_dbpassword }}"
+    priv: "{{ zabbix_proxy_dbname }}.*:ALL"
+    state: present
   when: zabbix_database_creation
+  delegate_to: "{{ delegated_dbhost }}"
+  tags:
+    - zabbix-proxy
+    - database
 
-- name: "MySQL | Importing schema file"
-  shell: "cd {{ datafiles_path }} && if [ -f schema.sql.gz ]; then gunzip schema.sql.gz ; fi && mysql -u {{ proxy_dbuser }} -p{{ proxy_dbpassword }} -D {{ proxy_dbname }} < schema.sql && touch /etc/zabbix/schema.done"
-  args:
-    creates: /etc/zabbix/schema.done
-  when: manage_database_sqlload and ansible_os_family == "RedHat" and (zabbix_short_version < 30)
+- name: "Get the file for schema.sql"
+  shell: ls -1 {{ datafiles_path }}/schema.sq*
+  changed_when: False
+  when:
+    - zabbix_database_sqlload
+  register: ls_output_create
+  tags:
+    - zabbix_proxy
+    - database
 
-- name: "MySQL | Importing schema file"
-  shell: "cd {{ datafiles_path }} && zcat schema.sql.gz | mysql -u {{ proxy_dbuser }} -p{{ proxy_dbpassword }} -D {{ proxy_dbname }} && touch /etc/zabbix/schema.done"
-  args:
-    creates: /etc/zabbix/schema.done
-  when: manage_database_sqlload and zabbix_short_version >= 30
+- name: "Check if we have done files"
+  stat:
+    path: /etc/zabbix/schema.done
+  register: done_file
+  when:
+    - zabbix_database_sqlload
+
+- name: "MySQL | Create database and import file"
+  mysql_db:
+    name: "{{ zabbix_proxy_dbname }}"
+    encoding: "{{ zabbix_proxy_dbencoding }}"
+    collation: "{{ zabbix_proxy_dbcollation }}"
+    state: import
+    target: "{{ ls_output_create.stdout }}"
+  when:
+    - zabbix_database_sqlload
+    - not done_file.stat.exists
+  delegate_to: "{{ delegated_dbhost }}"
+  tags:
+    - zabbix_proxy
+    - database
+
+- name: "Create done file"
+  file:
+    path: /etc/zabbix/schema.done
+    state: touch
+  when:
+    - not done_file.stat.exists
