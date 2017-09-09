@@ -4,7 +4,11 @@ Below an overview of all changes in the releases.
 
 Version (Release date)
 
-0.4.0   (2017-07-17)
+1.0.0   (2017-09-10)
+
+  * Changed from ini to yml style
+
+0.5.0   (2017-07-17)
 
   * Renaming docker-py to docker #10
   * [!] fix misspelling with property ListenIP #9 (By pull request: lebe-dev (Thanks!))
