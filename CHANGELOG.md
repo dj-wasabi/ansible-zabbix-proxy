@@ -9,7 +9,7 @@ Version (Release date)
   * Changed from ini to yml style
   * Replace shell tasks with modules.
   * Installing default 3.4.
-  * Prefixed all properties that started with `server_` with the value `zabbix_`.
+  * Prefixed all properties that started with `proxy_` with the value `zabbix_`.
   * Added upgrade part in documentation.
 
 0.5.0   (2017-07-17)
