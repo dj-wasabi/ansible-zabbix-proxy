@@ -3,8 +3,6 @@
 
 zabbix_version: 3.4
 zabbix_repo: zabbix
-zabbix_agent_package: zabbix-agent
-zabbix_agent_package_state: present
 zabbix_selinux: False
 
 zabbix_repo_yum:
@@ -91,3 +89,14 @@ zabbix_proxy_allowroot: 0
 zabbix_proxy_include: /etc/zabbix/zabbix_proxy.conf.d
 zabbix_proxy_libdir: /usr/lib/zabbix
 zabbix_proxy_loadmodulepath: "{{ zabbix_proxy_libdir }}/modules"
+
+# TLS settings
+zabbix_proxy_tlsconnect:
+zabbix_proxy_tlsaccept:
+zabbix_proxy_tlscafile:
+zabbix_proxy_tlscrlfile:
+zabbix_proxy_tlsservercertissuer:
+zabbix_proxy_tlsservercertsubject:
+zabbix_proxy_tlscertfile:
+zabbix_proxy_tlskeyfile:
+zabbix_proxy_tlspskidentity:
