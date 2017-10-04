@@ -3,7 +3,7 @@
 
 - name: "Sqlite3 | Default Database Path"
   set_fact:
-    proxy_dbname: /var/lib/zabbix/zabbix_proxy.db
+    zabbix_proxy_dbname: /var/lib/zabbix/zabbix_proxy.db
   when:
     - zabbix_proxy_dbname == "zabbix_proxy"
 
@@ -13,5 +13,15 @@
     owner: zabbix
     group: zabbix
     state: directory
+  when:
+    - zabbix_database_creation
+
+- name: "Sqlite3 | Importing schema file"
+  become_user: zabbix
+  shell: "zcat '{{ datafiles_path }}'/schema.sql.gz | sqlite3 '{{ zabbix_proxy_dbname }}'"
+  args:
+    creates: "{{ zabbix_proxy_dbname }}"
+  environment:
+    PGPASSWORD: '{{ zabbix_proxy_dbpassword }}'
   when:
     - zabbix_database_creation
