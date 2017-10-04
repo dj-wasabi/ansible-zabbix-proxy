@@ -386,3 +386,116 @@ LoadModulePath={{ zabbix_proxy_loadmodulepath }}
 {% if zabbix_proxy_loadmodule is defined and zabbix_proxy_loadmodule %}
 LoadModule={{ zabbix_proxy_loadmodule }}
 {% endif %}
+
+{% if zabbix_version | version_compare('3.0', '>=') %}
+####### TLS-RELATED PARAMETERS #######
+
+### Option: TLSConnect
+#       How the agent should connect to server or proxy. Used for active checks.
+#       Only one value can be specified:
+#               unencrypted - connect without encryption
+#               psk         - connect using TLS and a pre-shared key
+#               cert        - connect using TLS and a certificate
+#
+# Mandatory: yes, if TLS certificate or PSK parameters are defined (even for 'unencrypted' connection)
+# Default:
+# TLSConnect=unencrypted
+{% if zabbix_proxy_tlsconnect is defined and zabbix_proxy_tlsconnect %}
+TLSConnect={{ zabbix_proxy_tlsconnect }}
+{% endif %}
+
+### Option: TLSAccept
+#       What incoming connections to accept.
+#       Multiple values can be specified, separated by comma:
+#               unencrypted - accept connections without encryption
+#               psk         - accept connections secured with TLS and a pre-shared key
+#               cert        - accept connections secured with TLS and a certificate
+#
+# Mandatory: yes, if TLS certificate or PSK parameters are defined (even for 'unencrypted' connection)
+# Default:
+# TLSAccept=unencrypted
+{% if zabbix_proxy_tlsaccept is defined and zabbix_proxy_tlsaccept %}
+TLSAccept={{ zabbix_proxy_tlsaccept }}
+{% endif %}
+
+### Option: TLSCAFile
+#       Full pathname of a file containing the top-level CA(s) certificates for
+#       peer certificate verification.
+#
+# Mandatory: no
+# Default:
+# TLSCAFile=
+{% if zabbix_proxy_tlscafile is defined and zabbix_proxy_tlscafile %}
+TLSCAFile={{ zabbix_proxy_tlscafile }}
+{% endif %}
+
+### Option: TLSCRLFile
+#       Full pathname of a file containing revoked certificates.
+#
+# Mandatory: no
+# Default:
+# TLSCRLFile=
+{% if zabbix_proxy_tlscrlfile is defined and zabbix_proxy_tlscrlfile %}
+TLSCRLFile={{ zabbix_proxy_tlscrlfile }}
+{% endif %}
+
+### Option: TLSServerCertIssuer
+#      Allowed server certificate issuer.
+#
+# Mandatory: no
+# Default:
+# TLSServerCertIssuer=
+{% if zabbix_proxy_tlsservercertissuer is defined and zabbix_proxy_tlsservercertissuer %}
+TLSServerCertIssuer={{ zabbix_proxy_tlsservercertissuer }}
+{% endif %}
+
+### Option: TLSServerCertSubject
+#      Allowed server certificate subject.
+#
+# Mandatory: no
+# Default:
+# TLSServerCertSubject=
+{% if zabbix_proxy_tlsservercertsubject is defined and zabbix_proxy_tlsservercertsubject %}
+TLSServerCertSubject={{ zabbix_proxy_tlsservercertsubject }}
+{% endif %}
+
+### Option: TLSCertFile
+#       Full pathname of a file containing the agent certificate or certificate chain.
+#
+# Mandatory: no
+# Default:
+# TLSCertFile=
+{% if zabbix_proxy_tlscertfile is defined and zabbix_proxy_tlscertfile %}
+TLSCertFile={{ zabbix_proxy_tlscertfile }}
+{% endif %}
+
+### Option: TLSKeyFile
+#       Full pathname of a file containing the agent private key.
+#
+# Mandatory: no
+# Default:
+# TLSKeyFile=
+{% if zabbix_proxy_tlskeyfile is defined and zabbix_proxy_tlskeyfile %}
+TLSKeyFile={{ zabbix_proxy_tlskeyfile }}
+{% endif %}
+
+### Option: TLSPSKIdentity
+#       Unique, case sensitive string used to identify the pre-shared key.
+#
+# Mandatory: no
+# Default:
+# TLSPSKIdentity=
+{% if zabbix_proxy_tlspskidentity is defined and zabbix_proxy_tlspskidentity %}
+TLSPSKIdentity={{ zabbix_proxy_tlspskidentity }}
+{% endif %}
+
+### Option: TLSPSKFile
+#       Full pathname of a file containing the pre-shared key.
+#
+# Mandatory: no
+# Default:
+# TLSPSKFile=
+{% if zabbix_proxy_tlspskfile is defined and zabbix_proxy_tlspskfile %}
+TLSPSKFile={{ zabbix_proxy_tlspskfile }}
+{% endif %}
+{% endif %}
