@@ -35,6 +35,14 @@
     group: zabbix
     state: directory
 
+- name: "Allow zabbix_proxy to start (SELinux)"
+  selinux_permissive:
+    name: zabbix_t
+    permissive: true
+  become: yes
+  when:
+    - zabbix_selinux
+
 - name: "Configure zabbix-proxy"
   template:
     src: zabbix_proxy.conf.j2
