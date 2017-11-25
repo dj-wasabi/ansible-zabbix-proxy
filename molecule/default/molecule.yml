@@ -28,16 +28,16 @@ platforms:
     privileged: True
     groups:
       - postgresql
-  - name: zabbix-proxy-mysql-ubuntu
-    image: solita/ubuntu-systemd
-    privileged: True
-    groups:
-      - mysql
-  - name: zabbix-proxy-pgsql-ubuntu
-    image: solita/ubuntu-systemd
-    privileged: True
-    groups:
-      - postgresql
+#  - name: zabbix-proxy-mysql-ubuntu
+#    image: solita/ubuntu-systemd
+#    privileged: True
+#    groups:
+#      - mysql
+#  - name: zabbix-proxy-pgsql-ubuntu
+#    image: solita/ubuntu-systemd
+#    privileged: True
+#    groups:
+#      - postgresql
 provisioner:
   name: ansible
   lint:
