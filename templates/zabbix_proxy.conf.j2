@@ -208,7 +208,7 @@ JavaGatewayPort={{ zabbix_proxy_javagatewayport }}
 StartJavaPollers={{ zabbix_proxy_startjavapollers }}
 {% endif %}
 
-{% if zabbix_version | version_compare('2.4', '<') %}
+{% if zabbix_version | version_compare('2.4', '>=') %}
 ### Option: StartVMwareCollectors
 #	Number of pre-forked vmware collector instances.
 #
