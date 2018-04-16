@@ -37,7 +37,7 @@
     - zabbix_database_sqlload
   register: ls_output_create
   tags:
-    - zabbix_proxy
+    - zabbix-proxy
     - database
 
 - name: "Check if we have done files"
@@ -59,7 +59,7 @@
     - not done_file.stat.exists
   delegate_to: "{{ delegated_dbhost }}"
   tags:
-    - zabbix_proxy
+    - zabbix-proxy
     - database
 
 - name: "Create done file"
@@ -67,4 +67,5 @@
     path: /etc/zabbix/schema.done
     state: touch
   when:
+    - zabbix_database_sqlload
     - not done_file.stat.exists
