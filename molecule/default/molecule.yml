@@ -7,6 +7,7 @@ lint:
   name: yamllint
   options:
     config-file: molecule/default/yaml-lint.yml
+
 platforms:
   - name: zabbix-proxy-mysql-centos
     image: milcom/centos7-systemd
@@ -50,12 +51,12 @@ provisioner:
   inventory:
     group_vars:
       mysql:
-        zabbix_database_type: mysql
-        zabbix_database_type_long: mysql
-        zabbix_server_dbport: 3306
+        zabbix_proxy_database: mysql
+        zabbix_proxy_database_long: mysql
+        zabbix_proxy_dbport: 3306
       postgresql:
-        zabbix_database_type: pgsql
-        zabbix_database_type_long: postgresql
+        zabbix_proxy_database: pgsql
+        zabbix_proxy_database_long: postgresql
 
 scenario:
   name: default
