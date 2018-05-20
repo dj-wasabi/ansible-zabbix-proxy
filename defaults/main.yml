@@ -25,10 +25,10 @@ zabbix_database_creation: True
 zabbix_database_sqlload: True
 
 # Some role specific vars
-database_type: mysql
-database_type_long: mysql
-#database_type: pgsql
-#database_type_long: postgresql
+zabbix_proxy_database: mysql
+zabbix_proxy_database_long: mysql
+#zabbix_proxy_database: pgsql
+#zabbix_proxy_database_long: postgresql
 
 # zabbix-proxy specifc vars
 zabbix_proxy_mode: 0

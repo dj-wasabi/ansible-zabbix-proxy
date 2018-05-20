@@ -4,20 +4,20 @@
 - name: "RedHat | Set some facts Zabbix < 3.0"
   set_fact:
     apache_log: httpd
-    datafiles_path: "/usr/share/doc/zabbix-proxy-{{ database_type }}-{{ zabbix_version }}*/create"
+    datafiles_path: "/usr/share/doc/zabbix-proxy-{{ zabbix_proxy_database }}-{{ zabbix_version }}*/create"
   when:
-    - zabbix_version | version_compare('3.0', '<')
+    - zabbix_version is version_compare('3.0', '<')
   tags:
-    - zabbix-server
+    - zabbix-proxy
 
 - name: "RedHat | Set facts for Zabbix >= 3.0"
   set_fact:
     apache_log: httpd
-    datafiles_path: "/usr/share/doc/zabbix-proxy-{{ database_type }}-{{ zabbix_version }}*"
+    datafiles_path: "/usr/share/doc/zabbix-proxy-{{ zabbix_proxy_database }}-{{ zabbix_version }}*"
   when:
-    - zabbix_version | version_compare('3.0', '>=')
+    - zabbix_version is version_compare('3.0', '>=')
   tags:
-    - zabbix-server
+    - zabbix-proxy
 
 - name: "RedHat | Install basic repo file"
   yum_repository:
@@ -33,7 +33,7 @@
 
 - name: "RedHat | Installing zabbix-proxy-database_type"
   yum:
-    pkg: zabbix-proxy-{{ database_type }}
+    pkg: zabbix-proxy-{{ zabbix_proxy_database }}
     state: present
 
 - name: "RedHat | Install Ansible module dependencies"
@@ -54,7 +54,7 @@
     - mariadb
     - MySQL-python
   when:
-    - database_type == 'mysql'
+    - zabbix_proxy_database == 'mysql'
     - ansible_distribution_major_version == '7'
   tags:
     - zabbix-proxy
@@ -68,7 +68,7 @@
     - mysql
     - MySQL-python
   when:
-    - database_type == 'mysql'
+    - zabbix_proxy_database == 'mysql'
     - ansible_distribution_major_version != '7'
   tags:
     - zabbix-proxy
@@ -80,7 +80,7 @@
     name: postgresql
     state: present
   when:
-    - database_type == 'pgsql'
+    - zabbix_proxy_database == 'pgsql'
   tags:
     - zabbix-proxy
     - init

@@ -19,16 +19,18 @@ platforms:
     groups:
       - postgresql
   - name: zabbix-proxy-mysql-debian
-    image: maint/debian-systemd
+    image: minimum2scp/systemd-stretch
     privileged: True
+    command: /sbin/init
     groups:
       - mysql
   - name: zabbix-proxy-pgsql-debian
-    image: maint/debian-systemd
+    image: minimum2scp/systemd-stretch
     privileged: True
+    command: /sbin/init
     groups:
       - postgresql
-  - name: zabbix-v-mysql-ubuntu
+  - name: zabbix-proxy-mysql-ubuntu
     image: solita/ubuntu-systemd:latest
     privileged: True
     command: /sbin/init
@@ -48,12 +50,12 @@ provisioner:
   inventory:
     group_vars:
       mysql:
-        database_type: mysql
-        database_type_long: mysql
-        server_dbport: 3306
+        zabbix_database_type: mysql
+        zabbix_database_type_long: mysql
+        zabbix_server_dbport: 3306
       postgresql:
-        database_type: pgsql
-        database_type_long: postgresql
+        zabbix_database_type: pgsql
+        zabbix_database_type_long: postgresql
 
 scenario:
   name: default

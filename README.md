@@ -54,10 +54,10 @@ There are some variables in de default/main.yml which can (Or needs to) be chang
 There are some zabbix-proxy specific variables which will be used for the zabbix-proxy configuration file, these can be found in the default/main.yml file. There are 2 which needs some explanation:
 
 ```bash
-  #database_type: mysql
-  #database_type_long: mysql
-  database_type: pgsql
-  database_type_long: postgresql
+  #zabbix_proxy_database: mysql
+  #zabbix_proxy_database_long: mysql
+  zabbix_proxy_database: pgsql
+  zabbix_proxy_database_long: postgresql
 ```
 
 There are 2 database_types which will be supported: mysql and postgresql. You'll need to comment or uncomment the database you would like to use. In example from above, the postgresql database is used. If you want to use mysql, uncomment the 2 lines from mysql and comment the 2 lines for postgresql.
