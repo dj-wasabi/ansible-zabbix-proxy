@@ -62,6 +62,11 @@ There are some zabbix-proxy specific variables which will be used for the zabbix
 
 There are 2 database_types which will be supported: mysql and postgresql. You'll need to comment or uncomment the database you would like to use. In example from above, the postgresql database is used. If you want to use mysql, uncomment the 2 lines from mysql and comment the 2 lines for postgresql.
 
+If you use mysql, then you should define mysql username, password and host to prepare zabbix database, otherwise they will be considered as their default value (and therefor, connecting to database will be considered as connecting to localhost with no password). the keys are belows:
+   zabbix_proxy_mysql_login_host
+   zabbix_proxy_mysql_login_user
+   zabbix_proxy_mysql_login_password
+
 # Dependencies
 
 ```text
