@@ -9,6 +9,9 @@
     name: "{{ zabbix_proxy_dbname }}"
     encoding: "{{ zabbix_proxy_dbencoding }}"
     collation: "{{ zabbix_proxy_dbcollation }}"
+    login_host: "{{ zabbix_proxy_mysql_login_host | default(omit) }}"
+    login_user: "{{ zabbix_proxy_mysql_login_user | default(omit) }}"
+    login_password: "{{ zabbix_proxy_mysql_login_password | default(omit) }}"
     state: present
   when: zabbix_database_creation
   register: zabbix_database_created
@@ -23,6 +26,9 @@
     name: "{{ zabbix_proxy_dbuser }}"
     password: "{{ zabbix_proxy_dbpassword }}"
     priv: "{{ zabbix_proxy_dbname }}.*:ALL"
+    login_host: "{{ zabbix_proxy_mysql_login_host | default(omit) }}"
+    login_user: "{{ zabbix_proxy_mysql_login_user | default(omit) }}"
+    login_password: "{{ zabbix_proxy_mysql_login_password | default(omit) }}"
     state: present
   when: zabbix_database_creation
   delegate_to: "{{ delegated_dbhost }}"
@@ -52,6 +58,9 @@
     name: "{{ zabbix_proxy_dbname }}"
     encoding: "{{ zabbix_proxy_dbencoding }}"
     collation: "{{ zabbix_proxy_dbcollation }}"
+    login_host: "{{ zabbix_proxy_mysql_login_host | default(omit) }}"
+    login_user: "{{ zabbix_proxy_mysql_login_user | default(omit) }}"
+    login_password: "{{ zabbix_proxy_mysql_login_password | default(omit) }}"
     state: import
     target: "{{ ls_output_create.stdout }}"
   when:
