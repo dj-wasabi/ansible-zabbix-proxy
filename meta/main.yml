@@ -4,7 +4,7 @@ galaxy_info:
   description: Installing and maintaining zabbix-proxy for RedHat/Debian/Ubuntu.
   company: myCompany.Dotcom
   license: license (GPLv3)
-  min_ansible_version: 1.4
+  min_ansible_version: 2.4
   platforms:
     - name: EL
       versions:
@@ -19,6 +19,7 @@ galaxy_info:
       versions:
         - squeeze
         - wheezy
+        - stretch
   categories:
     - monitoring
 dependencies: []

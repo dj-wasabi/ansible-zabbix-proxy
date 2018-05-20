@@ -208,7 +208,7 @@ JavaGatewayPort={{ zabbix_proxy_javagatewayport }}
 StartJavaPollers={{ zabbix_proxy_startjavapollers }}
 {% endif %}
 
-{% if zabbix_version | version_compare('2.4', '>=') %}
+{% if zabbix_version is version_compare('2.4', '>=') %}
 ### Option: StartVMwareCollectors
 #	Number of pre-forked vmware collector instances.
 #
@@ -269,7 +269,7 @@ StartDBSyncers={{ zabbix_proxy_startdbsyncers }}
 #
 HistoryCacheSize={{ zabbix_proxy_historycachesize -}}M
 
-{% if zabbix_version | version_compare('3.2', '>=') %}
+{% if zabbix_version is version_compare('3.2', '>=') %}
 ### Option: HistoryIndexCacheSize
 # Size of history index cache, in bytes.
 # Shared memory size for indexing history cache.
@@ -280,7 +280,7 @@ HistoryCacheSize={{ zabbix_proxy_historycachesize -}}M
 HistoryIndexCacheSize={{ zabbix_proxy_historyindexcachesize -}}M
 {% endif %}
 
-{% if zabbix_version | version_compare('2.4', '<') %}
+{% if zabbix_version is version_compare('2.4', '<') %}
 ### Option: HistoryTextCacheSize
 #	Size of text history cache, in bytes.
 #	Shared memory size for storing character, text or log history data.
@@ -351,7 +351,7 @@ LogSlowQueries={{ zabbix_proxy_loglowqueries }}
 #
 TmpDir={{ zabbix_proxy_tmpdir }}
 
-{% if zabbix_version | version_compare('2.4', '<') %}
+{% if zabbix_version is version_compare('2.4', '<') %}
 ### Option: AllowRoot
 #	Allow the proxy to run as 'root'. If disabled and the proxy is started by 'root', the proxy
 #	will try to switch to user 'zabbix' instead. Has no effect if started under a regular user.
@@ -369,7 +369,7 @@ Include={{ zabbix_proxy_include }}
 
 ####### LOADABLE MODULES #######
 
-{% if zabbix_version | version_compare('3.0', '<') %}
+{% if zabbix_version is version_compare('3.0', '<') %}
 ### Option: LoadModulePath
 #	Full path to location of proxy modules.
 #	Default depends on compilation options.
@@ -387,7 +387,7 @@ LoadModulePath={{ zabbix_proxy_loadmodulepath }}
 LoadModule={{ zabbix_proxy_loadmodule }}
 {% endif %}
 
-{% if zabbix_version | version_compare('3.0', '>=') %}
+{% if zabbix_version is version_compare('3.0', '>=') %}
 ####### TLS-RELATED PARAMETERS #######
 
 ### Option: TLSConnect
