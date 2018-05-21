@@ -60,12 +60,13 @@
     force: yes
     state: present
 
-- name: "Debian | Install Ansible module dependencies"
+- name: "Debian | Install Ansible PostgreSQL module dependencies"
   apt:
     name: python-psycopg2
     state: present
   when:
-    - zabbix_database_creation
+    - zabbix_database_creation or zabbix_database_sqlload
+    - zabbix_proxy_database == 'pgsql'
 
 - name: "Debian | Install Mysql Client package"
   apt:
@@ -75,9 +76,10 @@
     - mysql-client
     - python-mysqldb
   when:
+    - zabbix_database_creation or zabbix_database_sqlload
     - zabbix_proxy_database == 'mysql'
   tags:
-    - zabbix-server
+    - zabbix-proxy
     - init
     - database
 
@@ -86,8 +88,9 @@
     name: postgresql
     state: present
   when:
+    - zabbix_database_creation or zabbix_database_sqlload
     - zabbix_proxy_database == 'pgsql'
   tags:
-    - zabbix-server
+    - zabbix-proxy
     - init
     - database

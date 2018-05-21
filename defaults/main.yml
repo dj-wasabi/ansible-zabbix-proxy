@@ -32,6 +32,7 @@ zabbix_proxy_database_long: mysql
 
 # zabbix-proxy specifc vars
 zabbix_proxy_mode: 0
+zabbix_proxy_hostname: "{{ inventory_hostname }}"
 zabbix_proxy_listenport: 10051
 zabbix_proxy_sourceip:
 zabbix_proxy_logfile: /var/log/zabbix/zabbix_proxy.log

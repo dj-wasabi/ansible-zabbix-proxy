@@ -31,17 +31,18 @@
   tags:
     - zabbix-agent
 
-- name: "RedHat | Installing zabbix-proxy-database_type"
+- name: "RedHat | Installing zabbix-proxy-{{ zabbix_proxy_database }}"
   yum:
     pkg: zabbix-proxy-{{ zabbix_proxy_database }}
     state: present
 
-- name: "RedHat | Install Ansible module dependencies"
+- name: "RedHat | Install Ansible PostgreSQL module dependencies"
   yum:
     name: python-psycopg2
     state: present
   when:
-    - zabbix_database_creation
+    - zabbix_database_creation or zabbix_database_sqlload
+    - zabbix_proxy_database == 'pgsql'
   tags:
     - zabbix-proxy
     - init
@@ -54,6 +55,7 @@
     - mariadb
     - MySQL-python
   when:
+    - zabbix_database_creation or zabbix_database_sqlload
     - zabbix_proxy_database == 'mysql'
     - ansible_distribution_major_version == '7'
   tags:
@@ -68,6 +70,7 @@
     - mysql
     - MySQL-python
   when:
+    - zabbix_database_creation or zabbix_database_sqlload
     - zabbix_proxy_database == 'mysql'
     - ansible_distribution_major_version != '7'
   tags:
@@ -80,6 +83,7 @@
     name: postgresql
     state: present
   when:
+    - zabbix_database_creation or zabbix_database_sqlload
     - zabbix_proxy_database == 'pgsql'
   tags:
     - zabbix-proxy
