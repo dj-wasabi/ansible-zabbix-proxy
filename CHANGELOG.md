@@ -4,6 +4,19 @@ Below an overview of all changes in the releases.
 
 Version (Release date)
 
+1.1.0   (2018-06-23)
+
+  * typo in zabbix_proxy_cachesize variable #32 (By pull request: q1x (Thanks!))
+  * Updated minimal Ansible version to 2.4 #28
+  * Add support for Debian 9 #28
+  * Fix for: Mysql database error #21
+  * Various fixes #26 (By pull request: hatifnatt (Thanks!))
+  * fix DBPort parameter in config template #23 (By pull request: maxim0r (Thanks!))
+  * Using correct compare #22
+  * set selinux policy to permissive for zabbix_t, needed for CentOS and others #18 (By pull request: andrzejwp (Thanks!))
+  * Add TLS connection configuration #17 (By pull request: mgornikov (Thanks!))
+  * Add support for sqlite3 DB #16 (By pull request: mgornikov (Thanks!))
+
 1.0.0   (2017-09-10)
 
   * Changed from ini to yml style
