@@ -70,7 +70,7 @@ zabbix_proxy_snmptrapperfile: /tmp/zabbix_traps.tmp
 zabbix_proxy_snmptrapper: 0
 zabbix_proxy_listenip:
 zabbix_proxy_housekeepingfrequency: 1
-zabbix_proxy_casesize: 8
+zabbix_proxy_cachesize: 8
 zabbix_proxy_startdbsyncers: 4
 zabbix_proxy_historycachesize: 8
 zabbix_proxy_historyindexcachesize: 4
