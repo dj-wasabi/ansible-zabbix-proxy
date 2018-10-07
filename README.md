@@ -1,15 +1,26 @@
 Table of Content
 
+- [Overview](#overview)
 - [Upgrades](#upgrades)
   * [1.0.0](#100)
-- [Requirements](#requirements)
+  * [Operating systems](#operating-systems)
+  * [Zabbix Versions](#zabbix-versions)
+    + [Zabbix 4.0](#zabbix-40)
+    + [Zabbix 3.4](#zabbix-34)
+    + [Zabbix 3.2](#zabbix-32)
+    + [Zabbix 3.0](#zabbix-30)
+    + [Zabbix 2.4](#zabbix-24)
+    + [Zabbix 2.2](#zabbix-22)
 - [Role Variables](#role-variables)
 - [Dependencies](#dependencies)
 - [Example Playbook](#example-playbook)
 - [License](#license)
 - [Author Information](#author-information)
 
+
 [![Build Status](https://travis-ci.org/dj-wasabi/ansible-zabbix-proxy.svg?branch=master)](https://travis-ci.org/dj-wasabi/ansible-zabbix-proxy)
+
+# Overview
 
 This is an role for installing and maintaining the zabbix-proxy.
 
@@ -29,15 +40,79 @@ With this 1.0.0 release, the following is changed:
 
 * All properties starts with `zabbix_` now. Example, property named `proxy_dbhost` is now `zabbix_proxy_dbhost`.
 
-# Requirements 
+## Operating systems
 
-This role will work on:
+This role will work on the following operating systems:
 
-* Red Hat
-* Debian
-* Ubuntu
+ * Red Hat
+ * Debian
+ * Ubuntu
 
 So, you'll need one of those operating systems.. :-)
+Please sent Pull Requests or suggestions when you want to use this role for other Operating systems.
+
+## Zabbix Versions
+
+See the following list of supported Operating systems with the Zabbix releases.
+
+### Zabbix 4.0
+
+  * CentOS 7.x
+  * Amazon 7.x
+  * RedHat 7.x
+  * OracleLinux 7.x
+  * Scientific Linux 7.x
+  * Ubuntu 14.04, 16.04, 18.04
+  * Debian 8, 9
+
+### Zabbix 3.4
+
+  * CentOS 7.x
+  * Amazon 7.x
+  * RedHat 7.x
+  * OracleLinux 7.x
+  * Scientific Linux 7.x
+  * Ubuntu 14.04, 16.04
+  * Debian 7, 8, 9
+
+### Zabbix 3.2
+
+  * CentOS 7.x
+  * Amazon 7.x
+  * RedHat 7.x
+  * OracleLinux 7.x
+  * Scientific Linux 7.x
+  * Ubuntu 14.04, 16.04
+  * Debian 7, 8
+
+### Zabbix 3.0
+
+  * CentOS 5.x, 6.x, 7.x
+  * Amazon 5.x, 6.x, 7.x
+  * RedHat 5.x, 6.x, 7.x
+  * OracleLinux 5.x, 6.x, 7.x
+  * Scientific Linux 5.x, 6.x, 7.x
+  * Ubuntu 14.04
+  * Debian 7, 8
+
+### Zabbix 2.4
+
+  * CentOS 6.x, 7.x
+  * Amazon 6.x, 7.x
+  * RedHat 6.x, 7.x
+  * OracleLinux 6.x, 7.x
+  * Scientific Linux 6.x, 7.x
+  * Ubuntu 12.04 14.04
+  * Debian 7
+
+### Zabbix 2.2
+
+  * CentOS 5.x, 6.x
+  * RedHat 5.x, 6.x
+  * OracleLinux 5.x, 6.x
+  * Scientific Linux 5.x, 6.x
+  * Ubuntu 12.04
+  * Debian 7
 
 # Role Variables
 

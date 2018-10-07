@@ -28,9 +28,9 @@ def test_zabbix_package(Package, TestinfraBackend, proxy, SystemInfo):
         assert zabbix_proxy.is_installed
 
         if SystemInfo.distribution in ['debian', 'ubuntu']:
-            assert zabbix_proxy.version.startswith("1:3.4")
+            assert zabbix_proxy.version.startswith("1:4.0")
         elif SystemInfo.distribution == 'centos':
-            assert zabbix_proxy.version.startswith("3.4")
+            assert zabbix_proxy.version.startswith("4.0")
 
 
 def test_socket(Socket):
