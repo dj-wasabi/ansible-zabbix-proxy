@@ -4,3 +4,4 @@
 .cache
 .molecule
 __pycache__
+requirements.txt
