@@ -1,8 +1,12 @@
-#ansible-zabbix-server Release
+# ansible-zabbix-server Release
 
 Below an overview of all changes in the releases.
 
 Version (Release date)
+
+1.2.0   (2018-10-19)
+
+  * Make it work with Zabbix 4.0
 
 1.1.0   (2018-06-23)
 
