@@ -20,10 +20,8 @@ galaxy_info:
         - squeeze
         - wheezy
         - stretch
-  categories:
-    - monitoring
   galaxy_tags:
     - zabbix
-    - zabbix-proxy
     - monitoring
+
 dependencies: []
