@@ -78,6 +78,7 @@
   when:
     - zabbix_database_creation or zabbix_database_sqlload
     - zabbix_proxy_database == 'mysql'
+    - zabbix_proxy_install_database_client
   tags:
     - zabbix-proxy
     - init
@@ -90,6 +91,7 @@
   when:
     - zabbix_database_creation or zabbix_database_sqlload
     - zabbix_proxy_database == 'pgsql'
+    - zabbix_proxy_install_database_client
   tags:
     - zabbix-proxy
     - init
