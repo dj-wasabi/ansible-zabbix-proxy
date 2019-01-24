@@ -126,6 +126,8 @@ There are some variables in de default/main.yml which can (Or needs to) be chang
 
 * `zabbix_repo`: True / False. When you already have an repository with the zabbix components, you can set it to False.
 
+* `zabbix_proxy_install_database_client`: True / False. False does not install database client. Default: True.
+
 There are some zabbix-proxy specific variables which will be used for the zabbix-proxy configuration file, these can be found in the default/main.yml file. There are 2 which needs some explanation:
 
 ```bash
