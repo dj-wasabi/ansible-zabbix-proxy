@@ -35,11 +35,15 @@
   yum:
     pkg: zabbix-proxy-{{ zabbix_proxy_database }}
     state: present
+  register: is_zabbix_proxy_package_installed
+  until: is_zabbix_proxy_package_installed is succeeded
 
 - name: "RedHat | Install Ansible PostgreSQL module dependencies"
   yum:
     name: python-psycopg2
     state: present
+  register: are_zabbix_proxy_dependency_packages_installed
+  until: are_zabbix_proxy_dependency_packages_installed is succeeded
   when:
     - zabbix_database_creation or zabbix_database_sqlload
     - zabbix_proxy_database == 'pgsql'
@@ -51,6 +55,8 @@
   yum:
     name: "{{ item }}"
     state: installed
+  register: are_zabbix_proxy_dependency_packages_installed
+  until: are_zabbix_proxy_dependency_packages_installed is succeeded
   with_items:
     - mariadb
     - MySQL-python
@@ -66,6 +72,8 @@
   yum:
     name: "{{ item }}"
     state: present
+  register: are_zabbix_proxy_dependency_packages_installed
+  until: are_zabbix_proxy_dependency_packages_installed is succeeded
   with_items:
     - mysql
     - MySQL-python
@@ -83,6 +91,8 @@
   yum:
     name: postgresql
     state: present
+  register: are_zabbix_proxy_dependency_packages_installed
+  until: are_zabbix_proxy_dependency_packages_installed is succeeded
   when:
     - zabbix_database_creation or zabbix_database_sqlload
     - zabbix_proxy_database == 'pgsql'
