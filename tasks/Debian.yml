@@ -33,6 +33,8 @@
   apt_key:
     id: "{{ sign_keys[zabbix_short_version][ansible_distribution_release]['sign_key'] }}"
     url: http://repo.zabbix.com/zabbix-official-repo.key
+  register: are_zabbix_proxy_dependency_packages_installed
+  until: are_zabbix_proxy_dependency_packages_installed is succeeded
   when:
     - zabbix_repo == "zabbix"
   become: yes
@@ -59,11 +61,15 @@
     cache_valid_time: 3600
     force: yes
     state: present
+  register: is_zabbix_proxy_package_installed
+  until: is_zabbix_proxy_package_installed is succeeded
 
 - name: "Debian | Install Ansible PostgreSQL module dependencies"
   apt:
     name: python-psycopg2
     state: present
+  register: are_zabbix_proxy_dependency_packages_installed
+  until: are_zabbix_proxy_dependency_packages_installed is succeeded
   when:
     - zabbix_database_creation or zabbix_database_sqlload
     - zabbix_proxy_database == 'pgsql'
@@ -75,6 +81,8 @@
   with_items:
     - mysql-client
     - python-mysqldb
+  register: are_zabbix_proxy_dependency_packages_installed
+  until: are_zabbix_proxy_dependency_packages_installed is succeeded
   when:
     - zabbix_database_creation or zabbix_database_sqlload
     - zabbix_proxy_database == 'mysql'
@@ -88,6 +96,8 @@
   apt:
     name: postgresql
     state: present
+  register: are_zabbix_proxy_dependency_packages_installed
+  until: are_zabbix_proxy_dependency_packages_installed is succeeded
   when:
     - zabbix_database_creation or zabbix_database_sqlload
     - zabbix_proxy_database == 'pgsql'
