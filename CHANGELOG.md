@@ -4,6 +4,11 @@ Below an overview of all changes in the releases.
 
 Version (Release date)
 
+1.3.0   (2019-01-25)
+
+  * Added retries for packages installation #38
+  * Adding zabbix_proxy_install_database_client variable #37 (By pull request: rnsc (Thanks!))
+
 1.2.0   (2018-10-19)
 
   * Make it work with Zabbix 4.0
