@@ -35,6 +35,29 @@
     group: zabbix
     state: directory
 
+- name: "Create directory for PSK file if not exist."
+  file:
+    path: "{{ zabbix_proxy_tlspskfile | dirname }}"
+    mode: 0755
+    state: directory
+  become: yes
+  when:
+    - zabbix_proxy_tlspskfile is defined
+
+- name: "Place TLS PSK File"
+  copy:
+    dest: "{{ zabbix_proxy_tlspskfile }}"
+    content: "{{ zabbix_proxy_tlspsk_secret }}"
+    owner: zabbix
+    group: zabbix
+    mode: 0400
+  become: yes
+  when:
+    - zabbix_proxy_tlspskfile is defined
+    - zabbix_proxy_tlspsk_secret is defined
+  notify:
+    - restart zabbix-proxy
+
 - name: "Allow zabbix_proxy to start (SELinux)"
   selinux_permissive:
     name: zabbix_t
@@ -50,7 +73,7 @@
     owner: zabbix
     group: zabbix
     mode: 0644
-  notify: zabbix-proxy restarted
+  notify: restart zabbix-proxy
 
 - name: "zabbix-proxy started"
   service:
