@@ -1,7 +1,9 @@
 ---
 # handlers file for zabbix-proxy
 
-- name: zabbix-proxy restarted
-  service: name=zabbix-proxy
-           state=restarted
-           enabled=yes
+- name: restart zabbix-proxy
+  service:
+    name: zabbix-proxy
+    state: restarted
+    enabled: yes
+  become: yes
