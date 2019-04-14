@@ -5,3 +5,4 @@
 .molecule
 __pycache__
 requirements.txt
+.vscode/
