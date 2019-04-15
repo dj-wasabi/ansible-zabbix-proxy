@@ -4,6 +4,17 @@ Below an overview of all changes in the releases.
 
 Version (Release date)
 
+UNRELEASED:
+
+
+1.4.0   (2019-04-15)
+
+  * Added property zabbix_proxy_package_state #45
+  * Fixed some Ansible Lint issues #46
+  * bugfix: "zabbix_proxy_tlspskfile" was not created with content "zabbi… #39 (By pull request: menzelit (Thanks!))
+  * Updated to Zabbix 4.2 #41
+  * enable upgrade of an existing installation #42 (By pull request: zab35 (Thanks!))
+
 1.3.0   (2019-01-25)
 
   * Added retries for packages installation #38
