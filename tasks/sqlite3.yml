@@ -17,10 +17,14 @@
     - zabbix_database_creation
 
 - name: "Sqlite3 | Importing schema file"
+  become: yes
   become_user: zabbix
-  shell: "zcat '{{ datafiles_path }}'/schema.sql.gz | sqlite3 '{{ zabbix_proxy_dbname }}'"
+  shell: |
+    set -o pipefail
+    zcat '{{ datafiles_path }}'/schema.sql.gz | sqlite3 '{{ zabbix_proxy_dbname }}'
   args:
     creates: "{{ zabbix_proxy_dbname }}"
+    executable: /bin/bash
   environment:
     PGPASSWORD: '{{ zabbix_proxy_dbpassword }}'
   when:
