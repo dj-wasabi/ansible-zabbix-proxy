@@ -56,7 +56,7 @@
 
 - name: "Debian | Installing zabbix-proxy-{{ zabbix_proxy_database }}"
   apt:
-    pkg: zabbix-proxy-{{ zabbix_proxy_database }}
+    pkg: "zabbix-proxy-{{ zabbix_proxy_database }}"
     update_cache: yes
     cache_valid_time: 3600
     force: yes
