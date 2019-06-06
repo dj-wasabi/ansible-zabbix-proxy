@@ -3,7 +3,6 @@
 
 zabbix_version: 4.2
 zabbix_repo: zabbix
-zabbix_selinux: False
 zabbix_proxy_package_state: present
 zabbix_proxy_install_database_client: True
 
