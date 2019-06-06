@@ -58,14 +58,15 @@
   notify:
     - restart zabbix-proxy
 
-- name: "Allow zabbix_proxy to start (SELinux)"
-  selinux_permissive:
-    name: zabbix_t
-    permissive: true
+- name: "Allow zabbix-proxy to open connections (SELinux)"
+  seboolean:
+    name: zabbix_can_network
+    persistent: yes
+    state: yes
   become: yes
-  when:
-    - zabbix_selinux
-
+  when: ansible_selinux.status == "enabled"
+  tags: selinux
+ 
 - name: "Configure zabbix-proxy"
   template:
     src: zabbix_proxy.conf.j2
