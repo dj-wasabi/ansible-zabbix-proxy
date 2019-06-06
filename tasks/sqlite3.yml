@@ -40,7 +40,7 @@
     seuser: system_u
     serole: object_r
     setype: zabbix_var_lib_t
-  when: 
+  when:
     - ansible_selinux.status == "enabled"
     - zabbix_database_creation
   tags: selinux
