@@ -94,7 +94,7 @@
 
 - name: "Debian | Install PostgreSQL Client package"
   apt:
-    name: postgresql
+    name: postgresql-client
     state: present
   register: are_zabbix_proxy_dependency_packages_installed
   until: are_zabbix_proxy_dependency_packages_installed is succeeded
