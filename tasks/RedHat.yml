@@ -53,13 +53,10 @@
 
 - name: "RedHat | Install Mysql Client package RHEL7"
   yum:
-    name: "{{ item }}"
+    name: ['mariadb', 'MySQL-python']
     state: installed
   register: are_zabbix_proxy_dependency_packages_installed
   until: are_zabbix_proxy_dependency_packages_installed is succeeded
-  with_items:
-    - mariadb
-    - MySQL-python
   when:
     - zabbix_database_creation or zabbix_database_sqlload
     - zabbix_proxy_database == 'mysql'
@@ -70,13 +67,10 @@
 
 - name: "RedHat | Install Mysql Client package RHEL5 - 6"
   yum:
-    name: "{{ item }}"
+    name: ['mysql', 'MySQL-python']
     state: present
   register: are_zabbix_proxy_dependency_packages_installed
   until: are_zabbix_proxy_dependency_packages_installed is succeeded
-  with_items:
-    - mysql
-    - MySQL-python
   when:
     - zabbix_database_creation or zabbix_database_sqlload
     - zabbix_proxy_database == 'mysql'

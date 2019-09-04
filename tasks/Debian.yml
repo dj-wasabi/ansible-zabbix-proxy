@@ -76,11 +76,8 @@
 
 - name: "Debian | Install Mysql Client package"
   apt:
-    name: "{{ item }}"
+    name: ['mysql-client', 'python-mysqldb']
     state: present
-  with_items:
-    - mysql-client
-    - python-mysqldb
   register: are_zabbix_proxy_dependency_packages_installed
   until: are_zabbix_proxy_dependency_packages_installed is succeeded
   when:
