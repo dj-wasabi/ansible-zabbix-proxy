@@ -24,7 +24,7 @@
   become_user: zabbix
   shell: |
     set -o pipefail
-    zcat '{{ datafiles_path }}'/schema.sql.gz | sqlite3 '{{ zabbix_proxy_dbname }}'
+    zcat {{ datafiles_path }}/schema.sql.gz | sqlite3 {{ zabbix_proxy_dbname }}
   args:
     creates: "{{ zabbix_proxy_dbname }}"
     executable: /bin/bash
