@@ -30,6 +30,8 @@ zabbix_proxy_database: mysql
 zabbix_proxy_database_long: mysql
 # zabbix_proxy_database: pgsql
 # zabbix_proxy_database_long: postgresql
+# zabbix_proxy_database: sqlite3
+# zabbix_proxy_database_long: sqlite3
 
 # zabbix-proxy specifc vars
 zabbix_proxy_mode: 0
