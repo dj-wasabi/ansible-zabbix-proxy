@@ -133,7 +133,7 @@ There are some variables in de default/main.yml which can (Or needs to) be chang
 
 * `zabbix_server_port`: The port on which the zabbix-server is running. Default: 10051
 
-* `zabbix_version`: This is the version of zabbix. Default it is 2.4, but can be overriden to 2.2 or 2.0.
+* `zabbix_version`: This is the version of zabbix. Default it is 4.2, but can be overriden to 4.0/3.4/3.2/3.0/2.4/2.2.
 
 * `zabbix_repo`: True / False. When you already have an repository with the zabbix components, you can set it to False.
 
