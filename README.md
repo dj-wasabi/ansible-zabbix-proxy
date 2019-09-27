@@ -133,7 +133,7 @@ There are some variables in de default/main.yml which can (Or needs to) be chang
 
 * `zabbix_server_port`: The port on which the zabbix-server is running. Default: 10051
 
-* `zabbix_version`: This is the version of zabbix. Default it is 2.4, but can be overriden to 2.2 or 2.0.
+* `zabbix_version`: This is the version of zabbix. Default it is 4.2, but can be overriden to 4.0/3.4/3.2/3.0/2.4/2.2.
 
 * `zabbix_repo`: True / False. When you already have an repository with the zabbix components, you can set it to False.
 
@@ -146,11 +146,13 @@ There are some zabbix-proxy specific variables which will be used for the zabbix
 ```bash
   #zabbix_proxy_database: mysql
   #zabbix_proxy_database_long: mysql
+  #zabbix_proxy_database: sqlite3
+  #zabbix_proxy_database_long: sqlite3
   zabbix_proxy_database: pgsql
   zabbix_proxy_database_long: postgresql
 ```
 
-There are 2 database_types which will be supported: mysql and postgresql. You'll need to comment or uncomment the database you would like to use. In example from above, the postgresql database is used. If you want to use mysql, uncomment the 2 lines from mysql and comment the 2 lines for postgresql.
+There are 3 database_types which will be supported: mysql/postgresql and sqlite. You'll need to comment or uncomment the database you would like to use. In example from above, the postgresql database is used. If you want to use mysql, uncomment the 2 lines from mysql and comment the 2 lines for postgresql.
 
 If you use mysql, then you should define mysql username, password and host to prepare zabbix database, otherwise they will be considered as their default value (and therefor, connecting to database will be considered as connecting to localhost with no password). the keys are belows:
    zabbix_proxy_mysql_login_host
