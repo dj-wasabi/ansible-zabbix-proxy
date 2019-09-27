@@ -6,6 +6,13 @@ Version (Release date)
 
 UNRELEASED:
 
+1.5.0   (2019-09-27)
+
+  * Fix and refactor SELinux support #47 (By pull request: angystardust (Thanks!))
+  * Update Debian.yml #49 (By pull request: giedriusramas (Thanks!))
+  * Calling yum and apt using a loop is deprecated #50 (By pull request: Aversiste (Thanks!))
+  * fixing issue 48 #51 (By pull request: bbcnt (Thanks!))
+  * change default version #52 (By pull request: fabtho (Thanks!))
 
 1.4.0   (2019-04-15)
 
