@@ -27,6 +27,7 @@
     gpgcheck: "{{ item.gpgcheck }}"
     gpgkey: "{{ item.gpgkey }}"
     state: "{{ item.state | default('present') }}"
+  become: yes
   with_items: "{{ zabbix_repo_yum }}"
   tags:
     - zabbix-agent
@@ -35,6 +36,7 @@
   yum:
     pkg: zabbix-proxy-{{ zabbix_proxy_database }}
     state: "{{ zabbix_proxy_package_state }}"
+  become: yes
   register: is_zabbix_proxy_package_installed
   until: is_zabbix_proxy_package_installed is succeeded
 
@@ -42,6 +44,7 @@
   yum:
     name: python-psycopg2
     state: present
+  become: yes
   register: are_zabbix_proxy_dependency_packages_installed
   until: are_zabbix_proxy_dependency_packages_installed is succeeded
   when:
@@ -55,6 +58,7 @@
   yum:
     name: ['mariadb', 'MySQL-python']
     state: installed
+  become: yes
   register: are_zabbix_proxy_dependency_packages_installed
   until: are_zabbix_proxy_dependency_packages_installed is succeeded
   when:
@@ -69,6 +73,7 @@
   yum:
     name: ['mysql', 'MySQL-python']
     state: present
+  become: yes
   register: are_zabbix_proxy_dependency_packages_installed
   until: are_zabbix_proxy_dependency_packages_installed is succeeded
   when:
@@ -85,6 +90,7 @@
   yum:
     name: postgresql
     state: present
+  become: yes
   register: are_zabbix_proxy_dependency_packages_installed
   until: are_zabbix_proxy_dependency_packages_installed is succeeded
   when:
