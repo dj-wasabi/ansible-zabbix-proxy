@@ -27,6 +27,7 @@
     group: zabbix
     mode: 0755
     state: directory
+  become: yes
 
 - name: "Create module dir zabbix-proxy"
   file:
@@ -34,6 +35,7 @@
     owner: zabbix
     group: zabbix
     state: directory
+  become: yes
 
 - name: "Create directory for PSK file if not exist."
   file:
@@ -81,3 +83,4 @@
     name: zabbix-proxy
     state: started
     enabled: yes
+  become: yes
