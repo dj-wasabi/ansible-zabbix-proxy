@@ -42,6 +42,7 @@ zabbix_proxy_logfile: /var/log/zabbix/zabbix_proxy.log
 zabbix_proxy_logfilesize: 10
 zabbix_proxy_debuglevel: 3
 zabbix_proxy_pidfile: /var/run/zabbix/zabbix_proxy.pid
+zabbix_proxy_socketdir: /var/run/zabbix
 zabbix_proxy_dbencoding: utf8
 zabbix_proxy_dbcollation: utf8_bin
 zabbix_proxy_dbhost: localhost
