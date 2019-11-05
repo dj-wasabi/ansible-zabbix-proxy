@@ -69,6 +69,15 @@
   when: ansible_selinux.status == "enabled"
   tags: selinux
 
+- name: "Allow zabbix-proxy to connect to zabbix_proxy_preprocessing.sock (SELinux)"
+  seboolean:
+    name: daemons_enable_cluster_mode
+    persistent: yes
+    state: yes
+  become: yes
+  when: ansible_selinux.status == "enabled"
+  tags: selinux
+
 - name: "Configure zabbix-proxy"
   template:
     src: zabbix_proxy.conf.j2
