@@ -6,6 +6,13 @@ Version (Release date)
 
 UNRELEASED:
 
+1.6.0   (2019-12-01)
+
+  * Added missing "become: yes" statements in tasks/main.yml Redhat.yml #53 (By pull request: elcomtik (Thanks!))
+  * SocketDir missing in zabbix_proxy.conf #54 (By pull request: Vinclame (Thanks!))
+  * selinux blocks preprocessing workers #55 (By pull request: Vinclame (Thanks!))
+  * Update to 4.4 #56 (By pull request: macaddict89 (Thanks!))
+
 1.5.0   (2019-09-27)
 
   * Fix and refactor SELinux support #47 (By pull request: angystardust (Thanks!))

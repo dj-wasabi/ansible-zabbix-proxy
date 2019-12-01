@@ -56,6 +56,16 @@ Please sent Pull Requests or suggestions when you want to use this role for othe
 
 See the following list of supported Operating systems with the Zabbix releases.
 
+### Zabbix 4.4
+
+  * CentOS 7.x, 8.x
+  * Amazon 7.x
+  * RedHat 7.x, 8.x
+  * OracleLinux 7.x, 8.x
+  * Scientific Linux 7.x, 8.x
+  * Ubuntu 14.04, 16.04, 18.04
+  * Debian 8, 9
+
 ### Zabbix 4.2
 
   * CentOS 7.x
