@@ -40,6 +40,7 @@ zabbix_proxy_listenport: 10051
 zabbix_proxy_sourceip:
 zabbix_proxy_logfile: /var/log/zabbix/zabbix_proxy.log
 zabbix_proxy_logfilesize: 10
+zabbix_proxy_enableremotecommands: 0
 zabbix_proxy_debuglevel: 3
 zabbix_proxy_pidfile: /var/run/zabbix/zabbix_proxy.pid
 zabbix_proxy_socketdir: /var/run/zabbix
