@@ -32,9 +32,23 @@
   tags:
     - zabbix-agent
 
+- name: "RedHat | Define package with version"
+  set_fact:
+    rhel_pkg: "zabbix-proxy-{{ zabbix_proxy_database }}-{{ zabbix_proxy_rhel_version }}"
+    cacheable: yes
+  when:
+    zabbix_proxy_rhel_version is defined
+
+- name: "RedHat | Define package without version"
+  set_fact:
+    rhel_pkg: "zabbix-proxy-{{ zabbix_proxy_database }}"
+    cacheable: yes
+  when:
+    zabbix_proxy_rhel_version is not defined
+
 - name: "RedHat | Installing zabbix-proxy-{{ zabbix_proxy_database }}"
   yum:
-    pkg: zabbix-proxy-{{ zabbix_proxy_database }}
+    pkg: "{{ rhel_pkg }}"
     state: "{{ zabbix_proxy_package_state }}"
   become: yes
   register: is_zabbix_proxy_package_installed

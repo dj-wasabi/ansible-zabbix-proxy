@@ -145,6 +145,8 @@ There are some variables in de default/main.yml which can (Or needs to) be chang
 
 * `zabbix_version`: This is the version of zabbix. Default it is 4.2, but can be overriden to 4.0/3.4/3.2/3.0/2.4/2.2.
 
+* `zabbix_proxy_{rhel,debian,ubuntu}_version`: This is the version of zabbix proxy. For example 4.4.4/4.2.5/4.2.8
+
 * `zabbix_repo`: True / False. When you already have an repository with the zabbix components, you can set it to False.
 
 * `*zabbix_proxy_package_state`: Default: _present_. Can be overridden to "latest" to update packages when needed.
