@@ -54,9 +54,39 @@
     - zabbix-proxy
     - init
 
+- name: "Debian | Select Zabbix proxy version"
+  set_fact:
+    zabbix_proxy_deb_version: "{{ zabbix_proxy_debian_version }}"
+    cacheable: yes
+  when:
+    - ansible_distribution == "Debian"
+    - zabbix_proxy_debian_version is defined
+
+- name: "Ubuntu | Select Zabbix proxy version"
+  set_fact:
+    zabbix_proxy_deb_version: "{{ zabbix_proxy_ubuntu_version }}"
+    cacheable: yes
+  when:
+    - ansible_distribution == "Ubuntu"
+    - zabbix_proxy_ubuntu_version is defined
+
+- name: "Debian | Define package with version"
+  set_fact:
+    deb_pkg: "zabbix-proxy-{{ zabbix_proxy_database }}={{ zabbix_proxy_deb_version }}"
+    cacheable: yes
+  when:
+    zabbix_proxy_deb_version is defined
+
+- name: "Debian | Define package without version"
+  set_fact:
+    deb_pkg: "zabbix-proxy-{{ zabbix_proxy_database }}"
+    cacheable: yes
+  when:
+    zabbix_proxy_deb_version is not defined
+
 - name: "Debian | Installing zabbix-proxy-{{ zabbix_proxy_database }}"
   apt:
-    pkg: "zabbix-proxy-{{ zabbix_proxy_database }}"
+    pkg: "{{ deb_pkg }}"
     update_cache: yes
     cache_valid_time: 3600
     force: yes
