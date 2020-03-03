@@ -87,6 +87,44 @@
     mode: 0644
   notify: restart zabbix-proxy
 
+- name: "Installing the Zabbix-api package on localhost"
+  pip:
+    name: zabbix-api
+    state: present
+  register: zabbix_api_package_installed
+  until: zabbix_api_package_installed is succeeded
+  delegate_to: localhost
+  become: "{{ zabbix_proxy_become_on_localhost }}"
+  when:
+    - zabbix_install_pip_packages | bool
+    - zabbix_api_create_proxy | bool
+  tags:
+    - api
+
+- name: "Create proxy"
+  zabbix_proxy:
+    server_url: "{{ zabbix_url }}"
+    http_login_user: "{{ zabbix_api_http_user | default(omit) }}"
+    http_login_password: "{{ zabbix_api_http_password | default(omit) }}"
+    login_user: "{{ zabbix_api_user }}"
+    login_password: "{{ zabbix_api_pass }}"
+    state: "{{ zabbix_create_proxy }}"
+    status: "{{ zabbix_proxy_status }}"
+    proxy_name: "{{ zabbix_proxy_name }}"
+    description: "{{ zabbix_proxy_description | default(omit) }}"
+    tls_psk: "{{ zabbix_proxy_tlspsk_secret | default(omit) }}"
+    tls_psk_identity: "{{ zabbix_proxy_tlspskidentity | default(omit) }}"
+    tls_subject: "{{ zabbix_proxy_tlsservercertsubject | default(omit) }}"
+    tls_accept: "{{ zabbix_proxy_tls_config[zabbix_proxy_tlsaccept if zabbix_proxy_tlsaccept else 'no_encryption'] }}"
+    tls_connect: "{{ zabbix_proxy_tls_config[zabbix_proxy_tlsconnect if zabbix_proxy_tlsconnect else 'no_encryption'] }}"
+    validate_certs: "{{ zabbix_validate_certs | default(omit) }}"
+  when:
+    - zabbix_api_create_proxy | bool
+  delegate_to: localhost
+  become: no
+  tags:
+    - api
+
 - name: "zabbix-proxy started"
   service:
     name: zabbix-proxy
