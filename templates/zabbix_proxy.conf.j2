@@ -28,7 +28,9 @@ ServerPort={{ zabbix_server_port }}
 #	Unique, case sensitive Proxy name. Make sure the Proxy name is known to the server!
 #	Value is acquired from HostnameItem if undefined.
 #
+{% if zabbix_proxy_hostname is defined and zabbix_proxy_hostname %}
 Hostname={{ zabbix_proxy_hostname  }}
+{% endif %}
 
 ### Option: HostnameItem
 #	Item used for generating Hostname if it is undefined.
@@ -37,6 +39,9 @@ Hostname={{ zabbix_proxy_hostname  }}
 # Mandatory: no
 # Default:
 # HostnameItem=system.hostname
+{% if zabbix_proxy_hostnameitem is defined and zabbix_proxy_hostnameitem %}
+HostnameItem={{ zabbix_proxy_hostnameitem }}
+{% endif %}
 
 ### Option: ListenPort
 #	Listen port for trapper.
