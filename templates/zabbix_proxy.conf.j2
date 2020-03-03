@@ -88,12 +88,12 @@ DebugLevel={{ zabbix_proxy_debuglevel }}
 #	Name of PID file.
 #
 PidFile={{ zabbix_proxy_pidfile }}
-
+{% if zabbix_version is version('3.2', '>') %}
 ### Option: SocketDir
 #	Location of the socketfile
 #
 SocketDir={{ zabbix_proxy_socketdir }}
-
+{% endif %}
 ### Option: DBHost
 #	Database host name.
 #	If set to localhost, socket is used for MySQL.
