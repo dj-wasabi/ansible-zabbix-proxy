@@ -137,6 +137,8 @@ See the following list of supported Operating systems with the Zabbix releases.
 
 # Role Variables
 
+## Main variables
+
 There are some variables in de default/main.yml which can (Or needs to) be changed/overriden:
 
 * `zabbix_server_host`: The ip or dns name for the zabbix-server machine.
@@ -152,6 +154,10 @@ There are some variables in de default/main.yml which can (Or needs to) be chang
 * `*zabbix_proxy_package_state`: Default: _present_. Can be overridden to "latest" to update packages when needed.
 
 * `zabbix_proxy_install_database_client`: True / False. False does not install database client. Default: True.
+
+* `zabbix_agent_become_on_localhost`: Set to `False` if you don't need to elevate privileges on localhost to install packages locally with pip. Default: True
+
+* `zabbix_install_pip_packages`: Set to `False` if you don't want to install the required pip packages. Useful when you control your environment completely. Default: True
 
 There are some zabbix-proxy specific variables which will be used for the zabbix-proxy configuration file, these can be found in the default/main.yml file. There are 2 which needs some explanation:
 
@@ -170,6 +176,63 @@ If you use mysql, then you should define mysql username, password and host to pr
    zabbix_proxy_mysql_login_host
    zabbix_proxy_mysql_login_user
    zabbix_proxy_mysql_login_password
+
+## TLS Specific configuration
+
+These variables are specific for Zabbix 3.0 and higher:
+
+* `*zabbix_proxy_tlsconnect`: How the proxy should connect to server or proxy. Used for active checks.
+
+     Possible values:
+     
+     * no_encryption
+     * PSK
+     * certificate
+     
+* `*zabbix_proxy_tlsaccept`: What incoming connections to accept.
+
+     Possible values:
+     
+     * no_encryption
+     * PSK
+     * certificate
+
+* `*zabbix_proxy_tlscafile`: Full pathname of a file containing the top-level CA(s) certificates for peer certificate verification.
+
+* `*zabbix_proxy_tlscrlfile`: Full pathname of a file containing revoked certificates.
+
+* `*zabbix_proxy_tlsservercertissuer`: Allowed server certificate issuer.
+
+* `*zabbix_proxy_tlsservercertsubject`: Allowed server certificate subject.
+
+* `*zabbix_proxy_tlscertfile`: Full pathname of a file containing the agent certificate or certificate chain.
+
+* `*zabbix_proxy_tlskeyfile`: Full pathname of a file containing the agent private key.
+
+* `*zabbix_proxy_tlspskidentity`: Unique, case sensitive string used to identify the pre-shared key.
+
+## Zabbix API variables
+
+These variables need to be overridden when you want to make use of the zabbix-api for automatically creating and or updating hosts.
+
+Host encryption configuration will be set to match agent configuration.
+
+When `zabbix_api_create_proxy` is set to `True`, it will install on the host executing the Ansible playbook the `zabbix-api` python module.
+
+* `zabbix_url`: The url on which the Zabbix webpage is available. Example: http://zabbix.example.com
+
+* `zabbix_api_http_user`: The http user to access zabbix url with Basic Auth
+* `zabbix_api_http_password`: The http password to access zabbix url with Basic Auth
+
+* `zabbix_api_create_proxy`: When you want to enable the Zabbix API to create/delete the proxy. This has to be set to `True` if you want to make use of `zabbix_create_proxy`. Default: `False`
+
+* `zabbix_api_user`: Username of user which has API access.
+
+* `zabbix_api_pass`: Password for the user which has API access.
+
+* `zabbix_create_proxy`: present (Default) if the proxy needs to be created or absent if you want to delete it. This only works when `zabbix_api_create_proxy` is set to `True`.
+
+* `zabbix_proxy_status`: active (Default) if the proxy needs to be active or passive.
 
 # Dependencies
 
