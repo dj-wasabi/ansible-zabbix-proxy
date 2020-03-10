@@ -121,3 +121,40 @@
     - zabbix-proxy
     - init
     - database
+
+- name: "RedHat | Install related SELinux package to fix issues"
+  yum:
+    name:
+      - policycoreutils-python
+    state: present
+  register: zabbix_server_dependencies_installed
+  until: zabbix_server_dependencies_installed is succeeded
+  when:
+    - ansible_distribution_major_version == "7" or ansible_distribution_major_version == "6"
+    - zabbix_selinux | bool
+  tags:
+    - zabbix-proxy
+
+- name: "RedHat | Install related SELinux package to fix issues on RHEL8"
+  yum:
+    name:
+      - policycoreutils
+      - checkpolicy
+    state: present
+  register: zabbix_server_dependencies_installed
+  until: zabbix_server_dependencies_installed is succeeded
+  when:
+    - ansible_distribution_major_version == "8"
+    - zabbix_selinux | bool
+  tags:
+    - zabbix-proxy
+
+- name: "RedHat | Add SEmodule to fix SELinux issue: zabbix_server_alerter.sock"
+  script:
+    cmd: files/install_semodule.bsx
+  args:
+    creates: /etc/selinux/targeted/active/modules/400/zabbix_server_add/cil
+  when:
+    - zabbix_selinux | bool
+  tags:
+    - zabbix-proxy
