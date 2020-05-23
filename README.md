@@ -23,15 +23,8 @@ Table of Content
 
 # Overview
 
-This is an role for installing and maintaining the zabbix-proxy.
-
-This is one of the 'dj-wasabi' roles which configures your whole zabbix environment. See an list for the complete list:
-
- * zabbix-web (https://galaxy.ansible.com/dj-wasabi/zabbix-web/)
- * zabbix-server (https://galaxy.ansible.com/dj-wasabi/zabbix-server/)
- * zabbix-proxy (https://galaxy.ansible.com/dj-wasabi/zabbix-proxy/)
- * zabbix-javagateway (https://galaxy.ansible.com/dj-wasabi/zabbix-javagateway/)
- * zabbix-agent (https://galaxy.ansible.com/dj-wasabi/zabbix-agent/)
+This role is migrated to: https://github.com/ansible-collections/community.zabbix/
+In this repository, a read only version is/will be available for those who can not make use of collections (yet). Changes/updates will only be applied to the collection and not in this repository.
 
 # Upgrades
 

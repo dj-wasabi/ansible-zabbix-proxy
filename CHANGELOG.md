@@ -4,7 +4,18 @@ Below an overview of all changes in the releases.
 
 Version (Release date)
 
-UNRELEASED:
+FINAL and LAST release for this role in this repository. This role will be transferred to: https://github.com/ansible-collections/community.zabbix/
+
+1.7.0   (2020-05-23)
+
+  * Added zabbix_proxy_enableremotecommands variable #57 (By pull request: AleksejsC (Thanks!))
+  * Added variable for specifying version Zabbix proxy #58 (By pull request: dmitriy-kharchenko (Thanks!))
+  * implement a condition on the SocketDir parameter #59 (By pull request: v (Thanks!))
+  * HostnameItem can be set and Hostname is now optional #61 (By pull request: sebedh (Thanks!))
+  * Add Proxy creation on through API #62 (By pull request: SimBou (Thanks!))
+  * Use the correct naming as suggested in dj-wasabi/ansible-zabbix-agent #301 #63
+  * fix SELinux issue : preprocessing.sock permission denied #64 (By pull request: SimBou (Thanks!))
+  * ability to manage zabbix-proxy service #65 (By pull request: Vinclame (Thanks!))
 
 1.6.0   (2019-12-01)
 
